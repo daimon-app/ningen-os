@@ -1,0 +1,27 @@
+{
+  "name": "人間OS メカニズム辞典",
+  "short_name": "人間OS辞典",
+  "description": "現実を見る → 名前を貼る → 一歩引く → 一手を選ぶ。DAIMON派生・人間OS基礎ライブラリー。",
+  "id": "./",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#0b0a08",
+  "theme_color": "#0b0a08",
+  "lang": "ja",
+  "icons": [
+    {
+      "src": "icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
