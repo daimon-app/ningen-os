@@ -126,6 +126,11 @@ main{
 .fav-toggle[aria-pressed="true"]{border-color:var(--gold-bright); color:var(--gold-bright);}
 .fav-toggle[aria-pressed="true"] .star{color:var(--gold-bright);}
 
+/* ---------------- 応用フィルター（仕事/投資/恋愛/DAIMON） ---------------- */
+.app-row{margin-bottom:8px;}
+.app-row .chip{font-size:11.5px; padding:5px 11px; opacity:.85;}
+.app-row .chip.active{background:var(--gold-bright); opacity:1;}
+
 /* ---------------- 最近見た ---------------- */
 .recent-wrap{margin:10px 0 4px;}
 .recent-label{font-size:11px; color:var(--text-faint); margin-bottom:6px; letter-spacing:.08em;}
@@ -158,6 +163,12 @@ main{
   color:var(--text);
 }
 .entry-oneline{font-size:12.5px; color:var(--text-dim); line-height:1.5;}
+.entry-app-label{
+  display:inline-block; margin-right:5px; padding:1px 6px;
+  border-radius:5px; font-size:10px; font-weight:700;
+  background:rgba(248,215,118,0.16); color:var(--gold-bright);
+  vertical-align:1px;
+}
 .entry-tags{margin-top:6px; display:flex; gap:5px; flex-wrap:wrap;}
 .entry-tag{
   font-size:10.5px; color:var(--text-faint);
@@ -413,6 +424,15 @@ main{
 .detail-section-body{font-size:14px; line-height:1.9; color:var(--text);}
 .detail-section.teppei .detail-section-body{color:var(--gold-bright);}
 .detail-section.daimon .detail-section-body{color:var(--text-dim);}
+.detail-section.app-ex{
+  padding-left:10px; border-left:2px solid var(--line);
+}
+.detail-section.app-ex.work{border-left-color:#cfa757;}
+.detail-section.app-ex.work .detail-section-title{color:#cfa757;}
+.detail-section.app-ex.investment{border-left-color:#c4885a;}
+.detail-section.app-ex.investment .detail-section-title{color:#c4885a;}
+.detail-section.app-ex.romance{border-left-color:#d68fa1;}
+.detail-section.app-ex.romance .detail-section-title{color:#d68fa1;}
 .detail-tags{display:flex; flex-wrap:wrap; gap:6px;}
 .detail-tag{
   font-size:11.5px; color:var(--text-faint); border:1px solid var(--line);

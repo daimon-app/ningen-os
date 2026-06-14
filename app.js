@@ -35,6 +35,15 @@ function lsSet(key, value){
 /* ---------------- 重要度の表示順 ---------------- */
 const IMP_ORDER = ['S','A','B','C'];
 
+/* ---------------- 応用フィルター（辞典カードの補足表示切替） ---------------- */
+const APP_FILTERS = [
+  {key:'all', label:'全部', field:null},
+  {key:'work', label:'仕事', field:'workExample'},
+  {key:'investment', label:'投資', field:'investmentExample'},
+  {key:'romance', label:'恋愛', field:'romanceExample'},
+  {key:'daimon', label:'DAIMON', field:'daimonUse'},
+];
+
 /* ============================================================
    一手モード: 状況 / 一手 / DAIMON転用マップ
    ★ mechIds は MECHANISMS に存在するIDのみ書く前提。
@@ -149,7 +158,7 @@ const DAIMON_MAP = [
 /* ---------------- アプリ状態 ---------------- */
 const state = {
   view: 'dict',
-  dict: {cat:'all', imp:'all', q:'', favOnly:false},
+  dict: {cat:'all', imp:'all', q:'', favOnly:false, app:'all'},
   itte: {step:1, situationId:null, action:null, saved:false},
   map:  {subtab:'books', bookId:null},
   more: {subtab:'fav', logFormOpen:false},
@@ -253,10 +262,17 @@ function chipHtml(key, label, active, color, count){
   const countHtml = (count==null) ? '' : `<span class="chip-count">${count}</span>`;
   return `<button class="chip ${active?'active':''}" data-key="${escapeHtml(key)}"${style} type="button">${escapeHtml(label)}${countHtml}</button>`;
 }
-function entryCardHtml(m, isFav){
+function entryCardHtml(m, isFav, appFilter){
   const imp = IMPORTANCE[m.importance] || {label:m.importance, color:'#a99878'};
   const cat = CATEGORIES[m.category] || {label:m.category, color:'#a99878'};
   const tags = (m.tags||[]).slice(0,3).map(t=>`<span class="entry-tag">${escapeHtml(t)}</span>`).join('');
+  const filter = APP_FILTERS.find(f=>f.key===appFilter) || APP_FILTERS[0];
+  let subText = m.oneLine;
+  let subLabel = '';
+  if(filter.field && m[filter.field]){
+    subText = m[filter.field];
+    subLabel = `<span class="entry-app-label">${escapeHtml(filter.label)}</span>`;
+  }
   return `
   <div class="entry-card" data-id="${m.id}">
     <div class="entry-main">
@@ -266,7 +282,7 @@ function entryCardHtml(m, isFav){
         <span class="cat-label">${escapeHtml(cat.label)}</span>
       </div>
       <div class="entry-name">${escapeHtml(m.name)}</div>
-      <div class="entry-oneline">${escapeHtml(m.oneLine)}</div>
+      <div class="entry-oneline">${subLabel}${escapeHtml(subText)}</div>
       <div class="entry-tags">${tags}</div>
     </div>
     <div class="entry-fav ${isFav?'active':''}" data-id="${m.id}">${isFav?'★':'☆'}</div>
@@ -291,28 +307,96 @@ function bindEntryCardEvents(container, onChange){
 /* ============================================================
    1. 辞典
 ============================================================ */
+
+/* ---------------- 自然文検索（あいまい一致） ---------------- */
+function normalizeText(s){
+  return (s||'').toLowerCase().replace(/\s+/g,'');
+}
+function bigrams(s){
+  s = normalizeText(s);
+  if(s.length < 2) return s ? [s] : [];
+  const out = [];
+  for(let i=0; i<s.length-1; i++) out.push(s.substr(i,2));
+  return out;
+}
+function bigramOverlap(query, target){
+  const qg = bigrams(query), tg = bigrams(target);
+  if(qg.length===0 || tg.length===0) return 0;
+  const tset = new Set(tg);
+  let hit = 0;
+  qg.forEach(g=>{ if(tset.has(g)) hit++; });
+  return hit / qg.length;
+}
+// メカニズム1件に対する検索スコア。
+// ・名前/読み/一言/タグに完全に文字列が含まれる → 強いスコア(+8)
+// ・aliases（自然文の言い回し）に部分一致 → 最強スコア(+10)
+// ・aliasesとのbigram類似度（最大値） → 中スコア(最大+6)
+// ・説明文・各応用例とのbigram類似度（最大値） → 弱スコア(最大+2)
+// ・関連メカニズム名/関連本の名前に完全一致 → 補助スコア(+3)
+function scoreMechanism(m, query){
+  const q = normalizeText(query);
+  if(!q) return 0;
+  let score = 0;
+
+  const core = [m.name, m.kana, m.oneLine, ...(m.tags||[])];
+  core.forEach(f=>{
+    if(f && normalizeText(f).includes(q)) score += 8;
+  });
+
+  let aliasExact = 0, aliasMax = 0;
+  (m.aliases||[]).forEach(a=>{
+    if(normalizeText(a).includes(q)) aliasExact = Math.max(aliasExact, 10);
+    aliasMax = Math.max(aliasMax, bigramOverlap(q, a));
+  });
+  score += aliasExact + aliasMax * 6;
+
+  const broad = [
+    m.shortDescription, m.fullDescription, m.everydayExample,
+    m.workExample, m.investmentExample, m.romanceExample,
+    m.teppeiExample, m.daimonUse,
+  ].filter(Boolean);
+  let broadMax = 0;
+  broad.forEach(f=>{ broadMax = Math.max(broadMax, bigramOverlap(q, f)); });
+  score += broadMax * 2;
+
+  const relNames = [
+    ...getBooksForMechanism(m.id).map(b=>b.name),
+    ...filterExisting(m.relatedMechanisms).map(id=>findMechanism(id).name),
+  ];
+  relNames.forEach(n=>{
+    if(n && normalizeText(n).includes(q)) score += 3;
+  });
+
+  return score;
+}
+function importanceCategoryCompare(a, b){
+  const ai = IMP_ORDER.indexOf(a.importance), bi = IMP_ORDER.indexOf(b.importance);
+  if(ai!==bi) return ai-bi;
+  const ac = (CATEGORIES[a.category]||{order:99}).order;
+  const bc = (CATEGORIES[b.category]||{order:99}).order;
+  if(ac!==bc) return ac-bc;
+  return (a.kana||a.name).localeCompare(b.kana||b.name, 'ja');
+}
 function getFilteredMechanisms(){
   const {cat, imp, q, favOnly} = state.dict;
   const favs = lsGet(LS_FAV, []);
-  const query = q.trim().toLowerCase();
-  return MECHANISMS.filter(m=>{
+  let items = MECHANISMS.filter(m=>{
     if(cat!=='all' && m.category!==cat) return false;
     if(imp!=='all' && m.importance!==imp) return false;
     if(favOnly && !favs.includes(m.id)) return false;
-    if(query){
-      const hay = [m.name, m.kana, m.oneLine, ...(m.tags||[])].join(' ').toLowerCase();
-      const bookNames = getBooksForMechanism(m.id).map(b=>b.name).join(' ').toLowerCase();
-      if(!hay.includes(query) && !bookNames.includes(query)) return false;
-    }
     return true;
-  }).sort((a,b)=>{
-    const ai = IMP_ORDER.indexOf(a.importance), bi = IMP_ORDER.indexOf(b.importance);
-    if(ai!==bi) return ai-bi;
-    const ac = (CATEGORIES[a.category]||{order:99}).order;
-    const bc = (CATEGORIES[b.category]||{order:99}).order;
-    if(ac!==bc) return ac-bc;
-    return (a.kana||a.name).localeCompare(b.kana||b.name, 'ja');
   });
+  const query = q.trim();
+  if(query){
+    items = items
+      .map(m=>({m, score: scoreMechanism(m, query)}))
+      .filter(x=>x.score > 1)
+      .sort((a,b)=> (b.score - a.score) || importanceCategoryCompare(a.m, b.m))
+      .map(x=>x.m);
+  } else {
+    items = items.sort(importanceCategoryCompare);
+  }
+  return items;
 }
 function renderCatChips(){
   const row = document.getElementById('cat-chip-row');
@@ -346,6 +430,19 @@ function renderImpChips(){
     });
   });
 }
+function renderAppChips(){
+  const row = document.getElementById('app-chip-row');
+  if(!row) return;
+  row.innerHTML = APP_FILTERS.map(f=>
+    chipHtml(f.key, f.label, state.dict.app===f.key, null, null)
+  ).join('');
+  row.querySelectorAll('.chip').forEach(el=>{
+    el.addEventListener('click', ()=>{
+      state.dict.app = el.dataset.key;
+      renderAppChips(); renderEntryList();
+    });
+  });
+}
 function renderRecentRow(){
   const wrap = document.getElementById('recent-wrap');
   const row = document.getElementById('recent-row');
@@ -368,7 +465,7 @@ function renderEntryList(){
     return;
   }
   const favs = lsGet(LS_FAV, []);
-  list.innerHTML = items.map(m=>entryCardHtml(m, favs.includes(m.id))).join('');
+  list.innerHTML = items.map(m=>entryCardHtml(m, favs.includes(m.id), state.dict.app)).join('');
   bindEntryCardEvents(list, renderEntryList);
 }
 function renderDictMeta(){
@@ -614,7 +711,7 @@ function renderMapBooks(){
     <div class="map-section-title">${escapeHtml(book.name)}</div>
     <div class="map-section-note">${escapeHtml(book.note||'')}</div>
     ${mechs.length
-      ? mechs.map(m=>entryCardHtml(m, favs.includes(m.id))).join('')
+      ? mechs.map(m=>entryCardHtml(m, favs.includes(m.id), state.dict.app)).join('')
       : `<div class="entry-empty">この本のメカニズムはまだ収録されていません。<br>今後のデータ追加で表示されます。</div>`}
   `;
   document.getElementById('map-back').addEventListener('click', ()=>{ state.map.bookId=null; renderMapBooks(); });
@@ -650,7 +747,7 @@ function renderFav(){
     box.innerHTML = `<div class="empty-box">お気に入りはまだありません。<br>辞典や詳細画面の☆をタップすると追加できる。</div>`;
     return;
   }
-  box.innerHTML = `<div class="entry-list">${favs.map(id=>entryCardHtml(findMechanism(id), true)).join('')}</div>`;
+  box.innerHTML = `<div class="entry-list">${favs.map(id=>entryCardHtml(findMechanism(id), true, state.dict.app)).join('')}</div>`;
   bindEntryCardEvents(box, renderFav);
 }
 function logEntryHtml(entry){
@@ -844,6 +941,18 @@ function renderDetail(id){
       <div class="detail-section-title">日常での例</div>
       <div class="detail-section-body">${escapeHtml(m.everydayExample)}</div>
     </div>
+    <div class="detail-section app-ex work">
+      <div class="detail-section-title">仕事での応用</div>
+      <div class="detail-section-body">${escapeHtml(m.workExample)}</div>
+    </div>
+    <div class="detail-section app-ex investment">
+      <div class="detail-section-title">投資での応用</div>
+      <div class="detail-section-body">${escapeHtml(m.investmentExample)}</div>
+    </div>
+    <div class="detail-section app-ex romance">
+      <div class="detail-section-title">恋愛での応用</div>
+      <div class="detail-section-body">${escapeHtml(m.romanceExample)}</div>
+    </div>
     <div class="detail-section teppei">
       <div class="detail-section-title">鉄兵の現場・実戦では</div>
       <div class="detail-section-body">${escapeHtml(m.teppeiExample)}</div>
@@ -918,7 +1027,7 @@ function switchSubtab(viewName, subtab){
 function renderCurrentView(){
   switch(state.view){
     case 'dict':
-      renderCatChips(); renderImpChips(); renderRecentRow(); renderEntryList(); renderDictMeta();
+      renderCatChips(); renderImpChips(); renderAppChips(); renderRecentRow(); renderEntryList(); renderDictMeta();
       break;
     case 'today': renderToday(); break;
     case 'itte': renderItte(); break;
