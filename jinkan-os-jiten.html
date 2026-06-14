@@ -1,0 +1,791 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0a08">
+<title>人間OS メカニズム辞典 | TEPPEI EDITION</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0b0a08;
+    --bg-soft:#131110;
+    --surface:#1a1714;
+    --surface-2:#211d18;
+    --border:#2f2a23;
+    --border-soft:#241f1a;
+    --text:#f3ead9;
+    --text-dim:#b3a791;
+    --text-faint:#766c5d;
+    --gold:#c9a456;
+    --gold-bright:#f0cd76;
+    --gold-deep:#8f6f33;
+
+    --c-resist:#a39a8b;
+    --c-reward:#e0ac51;
+    --c-habit:#c79a64;
+    --c-judge:#cfa757;
+    --c-bias:#c4885a;
+    --c-self:#d8a795;
+    --c-social:#e6cb7c;
+    --c-love:#d68fa1;
+    --c-daimon:#f8d77a;
+  }
+
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html,body{background:var(--bg);}
+  body{
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+    color:var(--text);
+    font-family:'Zen Kaku Gothic New',sans-serif;
+    font-size:15px;
+    line-height:1.65;
+    -webkit-tap-highlight-color:transparent;
+  }
+  button{font-family:inherit;cursor:pointer;}
+  *:focus-visible{outline:2px solid var(--gold-bright);outline-offset:2px;}
+
+  /* ---------- header ---------- */
+  .app-header{
+    position:sticky;top:0;z-index:50;
+    background:linear-gradient(180deg,#15120d 0%, var(--bg) 100%);
+    border-bottom:1px solid var(--border);
+    padding:16px 18px 12px;
+  }
+  .header-inner{max-width:480px;margin:0 auto;}
+  .brand-mark{
+    font-family:'Space Mono',monospace;font-size:11px;letter-spacing:.28em;
+    color:var(--gold);text-transform:uppercase;
+  }
+  .app-header h1{
+    font-family:'Shippori Mincho',serif;font-weight:800;font-size:22px;
+    letter-spacing:.04em;margin-top:3px;
+    background:linear-gradient(135deg,var(--gold-bright),var(--gold) 55%, var(--gold-deep));
+    -webkit-background-clip:text;background-clip:text;color:transparent;
+  }
+  .brand-sub{
+    font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.2em;
+    color:var(--text-faint);margin-top:6px;
+  }
+
+  /* ---------- layout ---------- */
+  main{flex:1;width:100%;max-width:480px;margin:0 auto;padding:18px 16px 96px;}
+  .view{display:none;}
+  .view.active{display:block;animation:fade .25s ease;}
+  @keyframes fade{from{opacity:0;transform:translateY(4px);}to{opacity:1;transform:translateY(0);}}
+
+  /* ---------- bottom nav ---------- */
+  .bottom-nav{
+    position:fixed;left:0;right:0;bottom:0;z-index:50;
+    display:flex;justify-content:center;gap:6px;
+    background:linear-gradient(0deg,#15120d 0%, rgba(21,18,13,.95) 100%);
+    border-top:1px solid var(--border);
+    padding:8px 12px calc(8px + env(safe-area-inset-bottom));
+    backdrop-filter:blur(8px);
+  }
+  .nav-btn{
+    flex:1;max-width:140px;
+    display:flex;flex-direction:column;align-items:center;gap:4px;
+    background:none;border:none;color:var(--text-faint);
+    font-size:11px;padding:7px 4px;border-radius:12px;
+    transition:color .2s;
+  }
+  .nav-btn.active{color:var(--gold-bright);}
+  .nav-btn svg{width:20px;height:20px;fill:none;stroke:currentColor;stroke-width:1.6;}
+
+  /* ---------- 辞典: today card ---------- */
+  .today-card{
+    border:1px solid var(--border);border-left:3px solid var(--gold);
+    border-radius:12px;padding:14px 16px;margin-bottom:18px;
+    background:linear-gradient(135deg,var(--surface),var(--bg-soft));
+  }
+  .today-card:active{transform:scale(.99);}
+  .today-label{
+    font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.22em;
+    color:var(--gold);text-transform:uppercase;
+  }
+  .today-name{font-family:'Shippori Mincho',serif;font-size:19px;font-weight:700;margin-top:6px;}
+  .today-one{font-size:13px;color:var(--text-dim);margin-top:4px;}
+
+  /* ---------- search ---------- */
+  .search-wrap{margin-bottom:12px;}
+  .search-input{
+    width:100%;background:var(--surface);border:1px solid var(--border);
+    border-radius:10px;padding:11px 14px;color:var(--text);font-size:14px;
+  }
+  .search-input::placeholder{color:var(--text-faint);}
+
+  /* ---------- chips ---------- */
+  .chip-row{
+    display:flex;gap:8px;overflow-x:auto;padding-bottom:14px;margin-bottom:6px;
+    -ms-overflow-style:none;scrollbar-width:none;
+  }
+  .chip-row::-webkit-scrollbar{display:none;}
+  .chip{
+    flex:0 0 auto;padding:7px 14px;border-radius:999px;
+    border:1px solid var(--border);background:var(--surface);
+    color:var(--text-dim);font-size:12.5px;white-space:nowrap;
+    transition:border-color .15s,color .15s,background .15s;
+  }
+  .chip.active{
+    border-color:var(--c,var(--gold));color:var(--c,var(--gold-bright));
+    background:color-mix(in srgb, var(--c,var(--gold)) 16%, var(--surface));
+  }
+
+  /* ---------- entry cards ---------- */
+  .entry{
+    border:1px solid var(--border);border-radius:12px;
+    margin-bottom:10px;overflow:hidden;background:var(--surface);
+  }
+  .entry-head{display:flex;align-items:center;gap:4px;}
+  .entry-toggle{
+    flex:1;display:flex;align-items:center;gap:12px;
+    background:none;border:none;color:var(--text);text-align:left;
+    padding:13px 6px 13px 14px;min-width:0;
+  }
+  .cat-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0;}
+  .entry-num{
+    font-family:'Space Mono',monospace;font-size:13px;color:var(--entry-color,var(--gold));
+    opacity:.85;min-width:20px;flex-shrink:0;
+  }
+  .entry-title{flex:1;display:flex;flex-direction:column;gap:2px;min-width:0;}
+  .entry-name{font-family:'Shippori Mincho',serif;font-size:15.5px;font-weight:700;}
+  .entry-one{font-size:12px;color:var(--text-dim);}
+  .tag-daimon{
+    font-family:'Space Mono',monospace;font-size:9px;letter-spacing:.1em;
+    color:#1a1410;background:var(--gold-bright);padding:2px 6px;
+    border-radius:999px;margin-left:6px;vertical-align:middle;
+  }
+  .chevron{
+    color:var(--text-faint);font-size:12px;flex-shrink:0;
+    transition:transform .2s;padding-right:4px;
+  }
+  .entry.open .chevron{transform:rotate(180deg);}
+  .fav-btn{
+    background:none;border:none;color:var(--text-faint);
+    padding:10px 12px;flex-shrink:0;
+  }
+  .fav-btn svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.4;display:block;}
+  .fav-btn.active{color:var(--gold-bright);}
+  .fav-btn.active svg{fill:currentColor;}
+  .entry-body{display:none;padding:0 16px 16px 50px;}
+  .entry.open .entry-body{display:block;}
+  .entry-example{
+    font-size:13px;color:var(--text-dim);
+    border-left:2px solid var(--border);padding-left:10px;margin-bottom:10px;
+  }
+  .entry-books{display:flex;flex-wrap:wrap;gap:6px;}
+  .book-tag{
+    font-size:11px;padding:3px 9px;border-radius:999px;
+    border:1px solid var(--border);color:var(--text-faint);
+    font-family:'Space Mono',monospace;
+  }
+  .empty-msg{text-align:center;color:var(--text-faint);padding:36px 0;font-size:13px;}
+
+  /* ---------- 一手 view ---------- */
+  .itte-caption{
+    font-family:'Space Mono',monospace;font-size:10px;letter-spacing:.16em;
+    color:var(--text-faint);text-align:center;margin-bottom:14px;
+  }
+  .itte-quote{
+    text-align:center;font-family:'Shippori Mincho',serif;font-size:18px;font-weight:800;
+    line-height:1.7;padding:20px 14px;border:1px solid var(--gold-deep);border-radius:14px;
+    margin-bottom:18px;background:radial-gradient(circle at 50% 0%, rgba(240,205,118,.08), transparent 70%);
+    color:var(--gold-bright);
+  }
+  .step-dots{display:flex;justify-content:center;gap:8px;margin-bottom:20px;}
+  .step-dot{width:8px;height:8px;border-radius:50%;background:var(--border);transition:background .2s;}
+  .step-dot.active{background:var(--gold);}
+  .itte-prompt{
+    font-family:'Shippori Mincho',serif;font-size:16px;font-weight:700;
+    text-align:center;margin-bottom:16px;
+  }
+  .situation-grid{display:flex;flex-direction:column;gap:8px;}
+  .situation-btn{
+    text-align:left;padding:14px 16px;border:1px solid var(--border);
+    border-radius:12px;background:var(--surface);color:var(--text);font-size:14px;
+    transition:border-color .15s;
+  }
+  .situation-btn:active{border-color:var(--gold);}
+
+  .stamp-wrap{display:flex;justify-content:center;gap:14px;flex-wrap:wrap;margin:22px 0 18px;}
+  .stamp{
+    width:118px;height:118px;border-radius:50%;border:4px double var(--gold);
+    display:flex;align-items:center;justify-content:center;text-align:center;
+    padding:10px;transform:rotate(-6deg);
+    background:radial-gradient(circle, rgba(201,164,86,.10), transparent 72%);
+  }
+  .stamp:nth-child(2){transform:rotate(4deg);}
+  .stamp:nth-child(3){transform:rotate(-3deg);}
+  .stamp-text{font-family:'Shippori Mincho',serif;font-weight:700;font-size:14px;color:var(--gold-bright);line-height:1.35;}
+  .itte-note{font-size:13px;color:var(--text-dim);text-align:center;line-height:1.85;margin-bottom:14px;}
+  .itte-reframe{
+    font-family:'Shippori Mincho',serif;text-align:center;font-size:15px;font-weight:500;
+    line-height:1.8;margin:16px 0;padding:14px;border-radius:12px;
+    border:1px solid var(--border);background:var(--surface-2);
+  }
+  .action-card{
+    display:block;width:100%;text-align:left;padding:14px 16px;
+    border:1px solid var(--border);border-radius:12px;background:var(--surface);
+    margin-bottom:10px;transition:border-color .15s;
+  }
+  .action-card:active{border-color:var(--gold);}
+  .action-name{font-family:'Shippori Mincho',serif;font-weight:700;font-size:15px;color:var(--gold-bright);}
+  .action-desc{font-size:12.5px;color:var(--text-dim);margin-top:4px;line-height:1.7;}
+
+  .confirm-box{text-align:center;padding:34px 16px 18px;}
+  .confirm-msg{font-family:'Shippori Mincho',serif;font-size:19px;font-weight:800;color:var(--gold-bright);margin-bottom:18px;line-height:1.7;}
+  .confirm-log{font-family:'Space Mono',monospace;font-size:12px;color:var(--text-dim);letter-spacing:.08em;}
+
+  .itte-nav{display:flex;justify-content:space-between;align-items:center;margin-top:22px;}
+  .text-btn{background:none;border:none;color:var(--text-dim);font-size:13px;padding:8px 4px;}
+  .primary-btn{
+    background:linear-gradient(135deg,var(--gold-bright),var(--gold-deep));
+    color:#1a1410;font-weight:700;border:none;border-radius:999px;
+    padding:11px 22px;font-size:13px;margin-left:auto;
+  }
+
+  /* ---------- マップ view ---------- */
+  .map-section{margin-bottom:26px;}
+  .map-title{
+    font-family:'Shippori Mincho',serif;font-size:15px;font-weight:700;
+    margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border);
+  }
+  .cat-bar-row{display:flex;align-items:center;gap:10px;margin-bottom:9px;}
+  .cat-bar-label{width:74px;font-size:12px;color:var(--text-dim);flex-shrink:0;}
+  .cat-bar-track{flex:1;height:8px;background:var(--surface-2);border-radius:999px;overflow:hidden;}
+  .cat-bar-fill{height:100%;border-radius:999px;}
+  .cat-bar-count{font-family:'Space Mono',monospace;font-size:11px;color:var(--text-faint);width:18px;text-align:right;}
+
+  .book-row{padding:10px 0;border-bottom:1px solid var(--border-soft);}
+  .book-row:last-child{border-bottom:none;}
+  .book-name{font-family:'Shippori Mincho',serif;font-size:13.5px;font-weight:700;margin-bottom:4px;}
+  .book-mechs{font-size:12px;color:var(--text-dim);}
+
+  .daimon-row{
+    display:flex;flex-wrap:wrap;align-items:baseline;gap:6px;
+    padding:9px 0;border-bottom:1px solid var(--border-soft);font-size:13px;
+  }
+  .daimon-row:last-child{border-bottom:none;}
+  .daimon-feature{font-family:'Shippori Mincho',serif;font-weight:700;color:var(--gold-bright);}
+  .daimon-arrow{color:var(--text-faint);}
+  .daimon-mech{color:var(--text);}
+  .daimon-desc{color:var(--text-dim);font-size:12px;}
+
+  .flow-step{display:flex;gap:14px;align-items:flex-start;position:relative;padding-bottom:22px;}
+  .flow-step:last-child{padding-bottom:0;}
+  .flow-step:not(:last-child)::before{
+    content:'';position:absolute;left:15px;top:34px;bottom:-4px;width:1px;background:var(--border);
+  }
+  .flow-num{
+    width:32px;height:32px;border-radius:50%;border:1px solid var(--gold);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Space Mono',monospace;font-size:13px;color:var(--gold-bright);
+    flex-shrink:0;background:var(--bg-soft);z-index:1;
+  }
+  .flow-text strong{font-family:'Shippori Mincho',serif;display:block;margin-bottom:3px;font-size:14px;}
+  .flow-text span{font-size:12.5px;color:var(--text-dim);line-height:1.7;}
+
+  .philosophy-box{
+    text-align:center;padding:26px 16px;border:1px solid var(--gold-deep);
+    border-radius:14px;background:radial-gradient(circle at 50% 0%, rgba(240,205,118,.08), transparent 70%);
+  }
+  .philosophy-box .big{font-family:'Shippori Mincho',serif;font-size:20px;font-weight:800;color:var(--gold-bright);line-height:1.8;}
+  .philosophy-box .small{font-size:12px;color:var(--text-dim);margin-top:12px;letter-spacing:.05em;}
+
+  @media (prefers-reduced-motion:reduce){
+    *{transition:none !important;animation:none !important;}
+  }
+</style>
+</head>
+<body>
+
+<header class="app-header">
+  <div class="header-inner">
+    <div class="brand-mark">TEPPEI EDITION · 31 ENTRIES</div>
+    <h1>人間OS メカニズム辞典</h1>
+    <div class="brand-sub">現実を見る → 名前を貼る → 一歩引いて一手を選ぶ</div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ================= 辞典 ================= -->
+  <section class="view active" id="view-dict">
+    <button class="today-card" id="today-card" type="button">
+      <div class="today-label">今日のメカニズム</div>
+      <div class="today-name" id="today-name"></div>
+      <div class="today-one" id="today-one"></div>
+    </button>
+
+    <div class="search-wrap">
+      <input class="search-input" id="search" type="search" placeholder="名前・現実例・本のタイトルで検索">
+    </div>
+
+    <div class="chip-row" id="chip-row"></div>
+
+    <div id="entry-list"></div>
+  </section>
+
+  <!-- ================= 一手 ================= -->
+  <section class="view" id="view-itte">
+    <div class="itte-caption">現実を見る → 名前を貼る → 一歩引く → 一手を選ぶ</div>
+    <div class="itte-quote">「今やらなアカン？<br>後でええやろ。」</div>
+    <div class="step-dots" id="step-dots"></div>
+    <div id="itte-content"></div>
+  </section>
+
+  <!-- ================= マップ ================= -->
+  <section class="view" id="view-map">
+    <div class="map-section">
+      <div class="map-title">カテゴリ別マップ — 全31項目</div>
+      <div id="cat-bars"></div>
+    </div>
+    <div class="map-section">
+      <div class="map-title">対応本マップ</div>
+      <div id="book-map"></div>
+    </div>
+    <div class="map-section">
+      <div class="map-title">DAIMON転用マップ</div>
+      <div id="daimon-map"></div>
+    </div>
+    <div class="map-section">
+      <div class="map-title">変換フロー</div>
+      <div id="flow-map"></div>
+    </div>
+    <div class="philosophy-box">
+      <div class="big">「今やらなアカン？<br>後でええやろ。」</div>
+      <div class="small">欲求を禁止しない。許可して、今だけ遅らせる。</div>
+    </div>
+  </section>
+
+</main>
+
+<nav class="bottom-nav">
+  <button class="nav-btn active" data-view="dict" type="button">
+    <svg viewBox="0 0 24 24"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="16" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+    辞典
+  </button>
+  <button class="nav-btn" data-view="itte" type="button">
+    <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M9 12h6M12 9l3 3-3 3"/></svg>
+    一手
+  </button>
+  <button class="nav-btn" data-view="map" type="button">
+    <svg viewBox="0 0 24 24"><rect x="4" y="4" width="7" height="7" rx="1"/><rect x="13" y="4" width="7" height="7" rx="1"/><rect x="4" y="13" width="7" height="7" rx="1"/><rect x="13" y="13" width="7" height="7" rx="1"/></svg>
+    マップ
+  </button>
+</nav>
+
+<script>
+/* ============================================================
+   データ
+============================================================ */
+const CATEGORIES = {
+  resist:{label:'変化抵抗', color:'var(--c-resist)'},
+  reward:{label:'報酬',     color:'var(--c-reward)'},
+  habit: {label:'習慣',     color:'var(--c-habit)'},
+  judge: {label:'判断',     color:'var(--c-judge)'},
+  bias:  {label:'バイアス', color:'var(--c-bias)'},
+  self:  {label:'自己',     color:'var(--c-self)'},
+  social:{label:'社会',     color:'var(--c-social)'},
+  love:  {label:'恋愛',     color:'var(--c-love)'},
+  daimon:{label:'DAIMON',   color:'var(--c-daimon)'},
+};
+const CAT_ORDER = ['resist','reward','habit','judge','bias','self','social','love','daimon'];
+
+const MECHANISMS = [
+  {id:1,  cat:'resist', name:'ホメオスタシス',     one:'元に戻ろうとする力',           example:'禁煙・禁酒・ダイエットで元の生活へ戻そうとする。',           books:['習慣超大全','脳科学より心理学']},
+  {id:2,  cat:'resist', name:'現状維持バイアス',   one:'今のままを選びやすい',         example:'面倒・不安・慣れで新しい行動を避ける。',                     books:['行動経済学が最強の学問である','ファスト&スロー']},
+  {id:3,  cat:'resist', name:'省エネ本能',         one:'脳と身体は楽を選ぶ',           example:'考える量・動く量が多いと自然に避ける。',                     books:['習慣超大全']},
+  {id:4,  cat:'reward',  name:'報酬系',            one:'快感をもう一度やりたい',       example:'甘い物・SNS・酒・性欲・達成感を繰り返したくなる。',           books:['脳科学より心理学','不夜脳']},
+  {id:5,  cat:'reward',  name:'ドーパミン予測',    one:'快感そのものより期待で動く',   example:'通知・当たりそう・会えそう、で先に脳が動く。',                books:['脳科学より心理学','ファスト&スロー']},
+  {id:6,  cat:'reward',  name:'即時報酬',          one:'今すぐ気持ちいい方へ流れる',   example:'将来の利益より、今の楽・快感を優先する。',                   books:['行動経済学が最強の学問である']},
+  {id:7,  cat:'reward',  name:'遅延割引',          one:'未来の価値を小さく見る',       example:'将来の健康より、今の一口・一本が強く見える。',                books:['ファスト&スロー','行動経済学が最強の学問である']},
+  {id:8,  cat:'reward',  name:'変動報酬',          one:'たまに当たるからハマる',       example:'ギャンブル、SNS通知、恋愛の不安定反応。',                    books:['行動経済学が最強の学問である','影響力の武器']},
+  {id:9,  cat:'habit',  name:'習慣ループ',         one:'きっかけ→行動→報酬',          example:'同じ場面で同じ行動を自動で繰り返す。',                       books:['習慣超大全']},
+  {id:10, cat:'habit',  name:'トリガー',           one:'行動のスイッチ',               example:'帰宅、風呂前、休憩、寝る前などで行動が始まる。',              books:['習慣超大全']},
+  {id:11, cat:'habit',  name:'条件付け',           one:'場面と反応が結びつく',         example:'コーヒー=休憩、現場終わり=スマホなど。',                     books:['NLP','心理学系']},
+  {id:12, cat:'habit',  name:'小さな成功',         one:'できた感が次を作る',           example:'腕立て1回、明日の一手、戻る一手で再起動。',                  books:['習慣超大全']},
+  {id:13, cat:'habit',  name:'実行意図',           one:'先に「その時やる事」を決める', example:'もし崩れそうなら、水を飲む/後でええやろ。',                  books:['習慣超大全']},
+  {id:14, cat:'judge',  name:'認知負荷',           one:'頭の容量を使いすぎる',         example:'選択・音声学習・現場判断が重なると疲れる。',                  books:['ファスト&スロー']},
+  {id:15, cat:'judge',  name:'意思決定疲れ',       one:'選びすぎると判断が鈍る',       example:'疲れた夜ほど食事・スマホ・衝動に流れやすい。',                books:['行動経済学が最強の学問である','ファスト&スロー']},
+  {id:16, cat:'judge',  name:'ヒューリスティック', one:'雑だけど速い近道判断',         example:'直感で判断する。速いがズレる時もある。',                     books:['ファスト&スロー']},
+  {id:17, cat:'judge',  name:'システム1/2',        one:'速い直感と遅い熟考',           example:'現場の勘=速い。拾い出し確認=遅い。',                         books:['ファスト&スロー']},
+  {id:18, cat:'bias',   name:'損失回避',           one:'得より損が痛い',               example:'株・買い物・恋愛で失う怖さが判断を曲げる。',                  books:['行動経済学が最強の学問である','ファスト&スロー']},
+  {id:19, cat:'bias',   name:'確証バイアス',       one:'見たい証拠だけ見る',           example:'自分の考えに合う情報ばかり集める。',                         books:['ファスト&スロー']},
+  {id:20, cat:'bias',   name:'アンカリング',       one:'最初の数字に引っ張られる',     example:'定価20万→10万が安く見える。',                                books:['ファスト&スロー','行動経済学が最強の学問である']},
+  {id:21, cat:'bias',   name:'フレーミング',       one:'言い方で判断が変わる',         example:'90%成功と10%失敗は印象が変わる。',                          books:['行動経済学が最強の学問である']},
+  {id:22, cat:'bias',   name:'サンクコスト',       one:'使った分を捨てられない',       example:'時間・金・感情を入れるほど切りにくい。',                     books:['行動経済学が最強の学問である']},
+  {id:23, cat:'self',   name:'自己効力感',         one:'自分ならできる感',             example:'禁煙・禁酒・早起きの証拠が次の行動を強くする。',              books:['習慣超大全','アドラー心理学']},
+  {id:24, cat:'self',   name:'認知的不協和',       one:'矛盾が苦しい',                 example:'悪いと知りつつやると、言い訳で整える。',                     books:['心理学系','NLP']},
+  {id:25, cat:'self',   name:'メタ認知',           one:'一歩引いて自分を見る',         example:'欲求=俺、ではなく「欲求が来た」と見る。',                    books:['脳科学より心理学','意志の取扱説明書']},
+  {id:26, cat:'social', name:'返報性',             one:'もらうと返したくなる',         example:'現場でコーヒー1本。関係がスムーズになる。',                  books:['影響力の武器']},
+  {id:27, cat:'social', name:'社会的証明',         one:'皆がやると正しく見える',       example:'口コミ、行列、レビューで判断が変わる。',                     books:['影響力の武器']},
+  {id:28, cat:'social', name:'希少性',             one:'レアほど欲しくなる',           example:'限定・残りわずか・手に入りにくい相手。',                     books:['影響力の武器']},
+  {id:29, cat:'social', name:'単純接触効果',       one:'会うほど好感が増える',         example:'何度も顔を合わせると安心と親近感が出る。',                   books:['男女の心理学','営業の心理学']},
+  {id:30, cat:'love',   name:'愛着システム',       one:'離れたくない・安心したい',     example:'恋愛、家族、親密関係で強く出る。',                           books:['男女の心理学','進化心理学']},
+  {id:31, cat:'daimon', name:'後でええやろ',       one:'欲求を許して今だけ遅らせる',   example:'吸ってもええ。でも今吸わなアカン？後でええやろ。',           books:['鉄兵式DAIMON','習慣超大全']},
+];
+
+const BOOK_MAP = [
+  {name:'影響力の武器',                         desc:'返報性・社会的証明・希少性・権威・好意・一貫性'},
+  {name:'行動経済学が最強の学問である',         desc:'認知バイアス・意思決定・状況・感情'},
+  {name:'ファスト&スロー',                      desc:'システム1/2・損失回避・アンカリング・判断'},
+  {name:'習慣超大全',                           desc:'習慣ループ・トリガー・小さな成功・環境設計・実行意図'},
+  {name:'進化心理学から考えるホモサピエンス',   desc:'愛着・配偶者選択・地位・本能'},
+  {name:'脳科学より心理学',                     desc:'報酬系・メタ認知・脳と行動'},
+  {name:'アドラー心理学',                       desc:'自己概念・目的論・所属・勇気づけ'},
+  {name:'男女の心理学 / 営業の心理学 / NLP',    desc:'対人・恋愛・条件付け・暗示・ラベリング'},
+];
+
+const DAIMON_MAP = [
+  {feature:'明日の一手',         mech:'認知負荷',           desc:'を減らす'},
+  {feature:'戻る一手',           mech:'ホメオスタシス・報酬系', desc:'への対策'},
+  {feature:'証拠回収',           mech:'自己効力感',         desc:'を積む'},
+  {feature:'現場休憩スイッチ',   mech:'トリガー・実行意図',  desc:''},
+  {feature:'後でええやろ',       mech:'欲求を禁止せず',     desc:'時間差で弱らせる'},
+];
+
+const FLOW = [
+  {n:1, title:'欲求・感情が出る', desc:'例：吸いたい / 食べたい / スマホ見たい'},
+  {n:2, title:'名前を貼る',       desc:'ホメオスタシス？ 報酬系？ 愛着？ 損失回避？'},
+  {n:3, title:'一歩引く',         desc:'「俺」ではなく「反応が来た」として見る'},
+  {n:4, title:'一手を選ぶ',       desc:'後でええやろ／水飲む／明日の一手／戻る一手'},
+];
+
+/* 「一手」フロー：状況 → 関連メカニズム */
+const SITUATIONS = [
+  {id:'craving', label:'吸いたい・飲みたい・食べたい',      mechIds:[4,1,7],  note:'快感の予測と、元に戻ろうとする力が同時に来てる。'},
+  {id:'phone',   label:'スマホ・通知が気になる',            mechIds:[5,8,10], note:'期待が先に脳を動かしてる。トリガーに反応してるだけ。'},
+  {id:'lazy',    label:'めんどくさい・動きたくない',        mechIds:[3,2],    note:'省エネ本能と現状維持。悪いことじゃない、ただの仕様。'},
+  {id:'trade',   label:'損切りできない・まだ戻る気がする',  mechIds:[18,22,19], note:'損失回避とサンクコスト。見たい証拠だけ見てる。'},
+  {id:'anger',   label:'イライラ・反論したくなる',          mechIds:[24,21],  note:'矛盾を整えようとしてる。言い方一つで見え方が変わる。'},
+  {id:'compare', label:'人と比較して不安になる',            mechIds:[27,29],  note:'周りの反応に引っ張られてるだけ。中身は変わってない。'},
+  {id:'giveup',  label:'もう無理・自信がない',              mechIds:[15,23],  note:'判断力が落ちてるだけ。能力の話じゃない。'},
+  {id:'other',   label:'うまく言えない・とりあえず来てる',  mechIds:[25,31],  note:'名前がつかなくてもいい。来た、と気づけたら十分。'},
+];
+
+/* 一手の選択肢 */
+const TEGAI = [
+  {id:'later',    label:'後でええやろ',         desc:'やってもいい。でも今じゃなくていい。今だけ遅らせる。'},
+  {id:'water',    label:'水を飲む / 場所を変える', desc:'トリガーを切る。一歩動くだけで反応が止まることが多い。'},
+  {id:'tomorrow', label:'明日の一手にする',     desc:'今やらなくていい。一手箱に書いて、今日は終わりにする。'},
+  {id:'return',   label:'戻る一手をやる',       desc:'できることを1個だけ。これが再起動のスイッチになる。'},
+];
+
+const CONFIRM_MSG = {
+  later:    '選んだ。今は流された側じゃない。',
+  water:    '動いた。それで十分。反応はもう弱くなってる。',
+  tomorrow: '書いた分だけ、頭は軽くなる。',
+  return:   'やった。それが証拠になる。',
+};
+
+const STAR_SVG = '<svg viewBox="0 0 24 24"><path d="M12 2.5l2.9 6.2 6.6.8-4.9 4.6 1.3 6.5L12 16.9 5.9 20.6l1.3-6.5-4.9-4.6 6.6-.8z"/></svg>';
+
+/* ============================================================
+   localStorage
+============================================================ */
+function getFavs(){
+  try{ return JSON.parse(localStorage.getItem('teppei_humanos_favs') || '[]'); }
+  catch(e){ return []; }
+}
+function toggleFav(id){
+  let favs = getFavs();
+  if (favs.includes(id)) favs = favs.filter(x => x !== id);
+  else favs.push(id);
+  localStorage.setItem('teppei_humanos_favs', JSON.stringify(favs));
+}
+function getLog(){
+  const today = new Date().toISOString().slice(0,10);
+  let log;
+  try{ log = JSON.parse(localStorage.getItem('teppei_humanos_log') || '{}'); }
+  catch(e){ log = {}; }
+  if (log.date !== today) log = {date: today, today: 0, total: log.total || 0};
+  return log;
+}
+function logAction(){
+  const log = getLog();
+  log.today += 1;
+  log.total += 1;
+  localStorage.setItem('teppei_humanos_log', JSON.stringify(log));
+}
+
+/* ============================================================
+   辞典ビュー
+============================================================ */
+const dictState = {cat:'all', q:''};
+
+function getCounts(){
+  const counts = {};
+  MECHANISMS.forEach(m => { counts[m.cat] = (counts[m.cat]||0) + 1; });
+  return counts;
+}
+
+function dayOfYear(d){
+  const start = new Date(d.getFullYear(), 0, 0);
+  return Math.floor((d - start) / 86400000);
+}
+
+function renderToday(){
+  const idx = dayOfYear(new Date()) % MECHANISMS.length;
+  const m = MECHANISMS[idx];
+  document.getElementById('today-name').textContent = m.name;
+  document.getElementById('today-one').textContent = m.one;
+  const card = document.getElementById('today-card');
+  card.dataset.id = m.id;
+  card.style.borderLeftColor = CATEGORIES[m.cat].color;
+}
+
+function renderChips(){
+  const counts = getCounts();
+  const total = MECHANISMS.length;
+  let html = `<button class="chip ${dictState.cat==='all'?'active':''}" data-cat="all" style="--c:var(--gold)">すべて ${total}</button>`;
+  CAT_ORDER.forEach(c => {
+    html += `<button class="chip ${dictState.cat===c?'active':''}" data-cat="${c}" style="--c:${CATEGORIES[c].color}">${CATEGORIES[c].label} ${counts[c]}</button>`;
+  });
+  document.getElementById('chip-row').innerHTML = html;
+}
+
+function entryTemplate(m){
+  const favs = getFavs();
+  const isFav = favs.includes(m.id);
+  const cat = CATEGORIES[m.cat];
+  const daimonTag = m.cat === 'daimon' ? '<span class="tag-daimon">鉄兵式</span>' : '';
+  const booksHtml = m.books.map(b => `<span class="book-tag">${b}</span>`).join('');
+  return `
+  <div class="entry" data-id="${m.id}" style="--entry-color:${cat.color}">
+    <div class="entry-head">
+      <button class="entry-toggle" type="button">
+        <span class="cat-dot" style="background:${cat.color}"></span>
+        <span class="entry-num">${String(m.id).padStart(2,'0')}</span>
+        <span class="entry-title">
+          <span class="entry-name">${m.name}${daimonTag}</span>
+          <span class="entry-one">${m.one}</span>
+        </span>
+        <span class="chevron">⌄</span>
+      </button>
+      <button class="fav-btn ${isFav?'active':''}" data-id="${m.id}" aria-label="お気に入り">${STAR_SVG}</button>
+    </div>
+    <div class="entry-body">
+      <p class="entry-example">${m.example}</p>
+      <div class="entry-books">${booksHtml}</div>
+    </div>
+  </div>`;
+}
+
+function renderList(){
+  const q = dictState.q.trim().toLowerCase();
+  const filtered = MECHANISMS.filter(m => {
+    if (dictState.cat !== 'all' && m.cat !== dictState.cat) return false;
+    if (!q) return true;
+    const hay = (m.name + m.one + m.example + m.books.join('')).toLowerCase();
+    return hay.includes(q);
+  });
+  const list = document.getElementById('entry-list');
+  list.innerHTML = filtered.length
+    ? filtered.map(entryTemplate).join('')
+    : '<p class="empty-msg">該当するメカニズムが見つかりません。</p>';
+}
+
+function openInDict(id){
+  document.querySelector('.nav-btn[data-view="dict"]').click();
+  dictState.cat = 'all';
+  dictState.q = '';
+  document.getElementById('search').value = '';
+  renderChips();
+  renderList();
+  requestAnimationFrame(() => {
+    const entry = document.querySelector(`.entry[data-id="${id}"]`);
+    if (entry){
+      entry.classList.add('open');
+      entry.scrollIntoView({behavior:'smooth', block:'center'});
+    }
+  });
+}
+
+/* ============================================================
+   一手ビュー
+============================================================ */
+const itteState = {step:1, situation:null, action:null};
+
+function renderStepDots(){
+  let html = '';
+  for (let n=1; n<=4; n++){
+    html += `<span class="step-dot ${n<=itteState.step?'active':''}"></span>`;
+  }
+  document.getElementById('step-dots').innerHTML = html;
+}
+
+function renderItte(){
+  renderStepDots();
+  const content = document.getElementById('itte-content');
+  if (itteState.step === 1){
+    content.innerHTML = `
+      <p class="itte-prompt">今、何が来てる？</p>
+      <div class="situation-grid">
+        ${SITUATIONS.map(s => `<button class="situation-btn" data-id="${s.id}">${s.label}</button>`).join('')}
+      </div>`;
+  } else if (itteState.step === 2){
+    const sit = SITUATIONS.find(s => s.id === itteState.situation);
+    const mechs = sit.mechIds.map(id => MECHANISMS.find(m => m.id === id));
+    content.innerHTML = `
+      <p class="itte-prompt">名前を貼る</p>
+      <div class="stamp-wrap">
+        ${mechs.map(m => `<div class="stamp"><span class="stamp-text">${m.name}</span></div>`).join('')}
+      </div>
+      <p class="itte-note">${sit.note}</p>
+      <div class="itte-reframe">これは「俺」じゃない。<br>来たもの、と一歩引いて見る。</div>
+      <div class="itte-nav">
+        <button class="text-btn" data-action="back">← やり直す</button>
+        <button class="primary-btn" data-action="next">一手を選ぶ →</button>
+      </div>`;
+  } else if (itteState.step === 3){
+    content.innerHTML = `
+      <p class="itte-prompt">一手を選ぶ</p>
+      ${TEGAI.map(t => `
+        <button class="action-card" data-id="${t.id}">
+          <div class="action-name">${t.label}</div>
+          <div class="action-desc">${t.desc}</div>
+        </button>`).join('')}
+      <div class="itte-nav">
+        <button class="text-btn" data-action="back">← やり直す</button>
+      </div>`;
+  } else if (itteState.step === 4){
+    const log = getLog();
+    content.innerHTML = `
+      <div class="confirm-box">
+        <div class="confirm-msg">${CONFIRM_MSG[itteState.action]}</div>
+        <div class="confirm-log">今日 ${log.today}回　・　累計 ${log.total}回</div>
+      </div>
+      <div class="itte-nav">
+        <button class="primary-btn" data-action="reset">もう一度</button>
+      </div>`;
+  }
+}
+
+document.getElementById('itte-content').addEventListener('click', (e) => {
+  const sitBtn = e.target.closest('.situation-btn');
+  if (sitBtn){
+    itteState.situation = sitBtn.dataset.id;
+    itteState.step = 2;
+    renderItte();
+    return;
+  }
+  const actCard = e.target.closest('.action-card');
+  if (actCard){
+    itteState.action = actCard.dataset.id;
+    itteState.step = 4;
+    logAction();
+    renderItte();
+    return;
+  }
+  const navBtn = e.target.closest('[data-action]');
+  if (navBtn){
+    const act = navBtn.dataset.action;
+    if (act === 'back'){
+      itteState.step = Math.max(1, itteState.step - 1);
+      if (itteState.step === 1) itteState.situation = null;
+    } else if (act === 'next'){
+      itteState.step = 3;
+    } else if (act === 'reset'){
+      itteState.step = 1;
+      itteState.situation = null;
+      itteState.action = null;
+    }
+    renderItte();
+  }
+});
+
+/* ============================================================
+   マップビュー
+============================================================ */
+function renderMap(){
+  const counts = getCounts();
+  const max = Math.max(...Object.values(counts));
+  document.getElementById('cat-bars').innerHTML = CAT_ORDER.map(c => {
+    const cnt = counts[c];
+    const pct = (cnt / max) * 100;
+    return `<div class="cat-bar-row">
+      <span class="cat-bar-label">${CATEGORIES[c].label}</span>
+      <div class="cat-bar-track"><div class="cat-bar-fill" style="width:${pct}%;background:${CATEGORIES[c].color}"></div></div>
+      <span class="cat-bar-count">${cnt}</span>
+    </div>`;
+  }).join('');
+
+  document.getElementById('book-map').innerHTML = BOOK_MAP.map(b =>
+    `<div class="book-row"><div class="book-name">${b.name}</div><div class="book-mechs">${b.desc}</div></div>`
+  ).join('');
+
+  document.getElementById('daimon-map').innerHTML = DAIMON_MAP.map(d =>
+    `<div class="daimon-row">
+      <span class="daimon-feature">${d.feature}</span>
+      <span class="daimon-arrow">→</span>
+      <span class="daimon-mech">${d.mech}</span>
+      ${d.desc ? `<span class="daimon-desc">${d.desc}</span>` : ''}
+    </div>`
+  ).join('');
+
+  document.getElementById('flow-map').innerHTML = FLOW.map(f =>
+    `<div class="flow-step"><div class="flow-num">${f.n}</div><div class="flow-text"><strong>${f.title}</strong><span>${f.desc}</span></div></div>`
+  ).join('');
+}
+
+/* ============================================================
+   タブ切り替え
+============================================================ */
+document.querySelectorAll('.nav-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const target = btn.dataset.view;
+    document.querySelectorAll('.view').forEach(v => v.classList.toggle('active', v.id === 'view-' + target));
+    document.querySelectorAll('.nav-btn').forEach(b => b.classList.toggle('active', b === btn));
+  });
+});
+
+/* ============================================================
+   イベント：辞典
+============================================================ */
+document.getElementById('search').addEventListener('input', (e) => {
+  dictState.q = e.target.value;
+  renderList();
+});
+
+document.getElementById('chip-row').addEventListener('click', (e) => {
+  const chip = e.target.closest('.chip');
+  if (!chip) return;
+  dictState.cat = chip.dataset.cat;
+  renderChips();
+  renderList();
+});
+
+document.getElementById('entry-list').addEventListener('click', (e) => {
+  const favBtn = e.target.closest('.fav-btn');
+  if (favBtn){
+    toggleFav(parseInt(favBtn.dataset.id, 10));
+    favBtn.classList.toggle('active');
+    return;
+  }
+  const toggle = e.target.closest('.entry-toggle');
+  if (toggle){
+    toggle.closest('.entry').classList.toggle('open');
+  }
+});
+
+document.getElementById('today-card').addEventListener('click', () => {
+  openInDict(parseInt(document.getElementById('today-card').dataset.id, 10));
+});
+
+/* ============================================================
+   初期化
+============================================================ */
+renderToday();
+renderChips();
+renderList();
+renderItte();
+renderMap();
+</script>
+</body>
+</html>
