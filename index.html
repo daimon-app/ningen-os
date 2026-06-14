@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0b0a08">
+<title>人間OS メカニズム辞典 | TEPPEI EDITION</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Shippori+Mincho:wght@500;700;800&amp;family=Zen+Kaku+Gothic+New:wght@400;500;700;900&amp;family=Space+Mono:wght@400;700&amp;display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="app-header">
+  <div class="app-title">
+    <span class="app-title-main">人間OS<span class="app-title-sub">メカニズム辞典</span></span>
+    <span class="app-title-edition">TEPPEI EDITION</span>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ============ 1. 辞典 ============ -->
+  <section class="view active" id="view-dict" data-view="dict">
+    <div class="search-wrap">
+      <input class="search-input" id="search" type="search" inputmode="search"
+             placeholder="名前・タグ・本のタイトルで検索" autocomplete="off">
+    </div>
+    <div class="chip-row" id="cat-chip-row"></div>
+    <div class="filter-row2">
+      <div class="chip-row imp-row" id="imp-chip-row"></div>
+      <button class="fav-toggle" id="fav-toggle" type="button" aria-pressed="false">
+        <span class="star">★</span><span>お気に入り</span>
+      </button>
+    </div>
+    <div class="recent-wrap" id="recent-wrap" hidden>
+      <div class="recent-label">最近見た項目</div>
+      <div class="recent-row" id="recent-row"></div>
+    </div>
+    <div class="dict-meta" id="dict-meta"></div>
+    <div class="entry-list" id="entry-list"></div>
+  </section>
+
+  <!-- ============ 2. 今日 ============ -->
+  <section class="view" id="view-today" data-view="today">
+    <div class="today-date" id="today-date"></div>
+    <div class="today-hero" id="today-hero"></div>
+    <div class="today-actions" id="today-actions"></div>
+    <div class="today-found" id="today-found"></div>
+  </section>
+
+  <!-- ============ 3. 一手 ============ -->
+  <section class="view" id="view-itte" data-view="itte">
+    <div class="itte-quote">「今やらなアカン？<br>後でええやろ。」</div>
+    <div class="step-dots" id="step-dots">
+      <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+    </div>
+    <div class="itte-content" id="itte-content"></div>
+  </section>
+
+  <!-- ============ 4. マップ ============ -->
+  <section class="view" id="view-map" data-view="map">
+    <div class="subtab-row" id="map-subtab-row">
+      <button class="subtab active" data-subtab="books" type="button">本マップ</button>
+      <button class="subtab" data-subtab="daimon" type="button">DAIMONマップ</button>
+    </div>
+    <div class="subview active" id="subview-books"></div>
+    <div class="subview" id="subview-daimon"></div>
+  </section>
+
+  <!-- ============ 5. その他 ============ -->
+  <section class="view" id="view-more" data-view="more">
+    <div class="subtab-row" id="more-subtab-row">
+      <button class="subtab active" data-subtab="fav" type="button">お気に入り</button>
+      <button class="subtab" data-subtab="log" type="button">発見ログ</button>
+      <button class="subtab" data-subtab="settings" type="button">設定</button>
+    </div>
+    <div class="subview active" id="subview-fav"></div>
+    <div class="subview" id="subview-log"></div>
+    <div class="subview" id="subview-settings"></div>
+  </section>
+
+</main>
+
+<!-- ============ メカニズム詳細オーバーレイ ============ -->
+<div class="detail-overlay" id="detail-overlay" aria-hidden="true">
+  <div class="detail-card">
+    <div class="detail-header">
+      <button class="detail-back" id="detail-back" type="button" hidden>‹ 戻る</button>
+      <div class="detail-header-spacer"></div>
+      <button class="detail-close" id="detail-close" type="button" aria-label="閉じる">✕</button>
+    </div>
+    <div class="detail-body" id="detail-body"></div>
+  </div>
+</div>
+
+<!-- ============ 下部ナビ ============ -->
+<nav class="bottom-nav" id="bottom-nav">
+  <button class="nav-btn active" data-view="dict" type="button">
+    <svg viewBox="0 0 24 24" class="nav-icon"><path d="M4 5h16M4 10h16M4 15h10M4 20h10"/></svg>
+    <span>辞典</span>
+  </button>
+  <button class="nav-btn" data-view="today" type="button">
+    <svg viewBox="0 0 24 24" class="nav-icon">
+      <circle cx="12" cy="12" r="4"/>
+      <path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M5 19l2-2M17 7l2-2"/>
+    </svg>
+    <span>今日</span>
+  </button>
+  <button class="nav-btn" data-view="itte" type="button">
+    <svg viewBox="0 0 24 24" class="nav-icon">
+      <circle cx="12" cy="12" r="9"/>
+      <path d="M12 7v5l3 2"/>
+    </svg>
+    <span>一手</span>
+  </button>
+  <button class="nav-btn" data-view="map" type="button">
+    <svg viewBox="0 0 24 24" class="nav-icon">
+      <rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/>
+      <rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/>
+    </svg>
+    <span>マップ</span>
+  </button>
+  <button class="nav-btn" data-view="more" type="button">
+    <svg viewBox="0 0 24 24" class="nav-icon">
+      <path d="M5 7h14M5 12h14M5 17h9"/><circle cx="20" cy="17" r="1.4" fill="currentColor" stroke="none"/>
+    </svg>
+    <span>その他</span>
+  </button>
+</nav>
+
+<script src="mechanisms.js"></script>
+<script src="books.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
