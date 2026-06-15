@@ -342,6 +342,8 @@ function scoreMechanism(m, query){
   core.forEach(f=>{
     if(f && normalizeText(f).includes(q)) score += 8;
   });
+  // 完全一致（クエリ＝項目名そのもの）は最優先で1位に来るよう強いボーナスを付与
+  if(normalizeText(m.name) === q || normalizeText(m.kana) === q) score += 30;
 
   let aliasExact = 0, aliasMax = 0;
   (m.aliases||[]).forEach(a=>{
@@ -349,6 +351,14 @@ function scoreMechanism(m, query){
     aliasMax = Math.max(aliasMax, bigramOverlap(q, a));
   });
   score += aliasExact + aliasMax * 6;
+
+  let usedExact = 0, usedMax = 0;
+  (m.usedInDailyLife||[]).forEach(u=>{
+    if(normalizeText(u).includes(q)) usedExact = Math.max(usedExact, 10);
+    usedMax = Math.max(usedMax, bigramOverlap(q, u));
+  });
+  score += usedExact + usedMax * 6;
+
 
   const broad = [
     m.shortDescription, m.fullDescription, m.everydayExample,
@@ -941,6 +951,11 @@ function renderDetail(id){
       <div class="detail-section-title">日常での例</div>
       <div class="detail-section-body">${escapeHtml(m.everydayExample)}</div>
     </div>
+    ${(m.usedInDailyLife&&m.usedInDailyLife.length) ? `
+    <div class="detail-section used-in-life">
+      <div class="detail-section-title">日常に使われてる場所</div>
+      <div class="detail-tags">${m.usedInDailyLife.map(u=>`<span class="detail-tag used-tag">${escapeHtml(u)}</span>`).join('')}</div>
+    </div>` : ''}
     <div class="detail-section app-ex work">
       <div class="detail-section-title">仕事での応用</div>
       <div class="detail-section-body">${escapeHtml(m.workExample)}</div>
