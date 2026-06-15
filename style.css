@@ -439,6 +439,11 @@ main{
   border-radius:8px; padding:3px 9px;
 }
 .detail-chip-row{display:flex; flex-wrap:wrap; gap:8px;}
+.detail-section.used-in-life .detail-section-title{color:var(--gold-bright);}
+.used-tag{
+  background:rgba(248,215,122,0.08); border-color:rgba(248,215,122,0.35);
+  color:var(--gold-bright);
+}
 
 /* ---------------- 下部ナビ ---------------- */
 .bottom-nav{
