@@ -467,3 +467,45 @@ main{
 
 /* ---------------- 汎用 ---------------- */
 .section-gap{height:8px;}
+
+/* ============================================================
+   Ver.7 新スタイル: 評価指数 / 人間OSレーダー / 実戦セクション
+============================================================ */
+
+/* ── 評価・指数グリッド ── */
+.v7-ratings { border-top: 1px solid var(--line); padding-top: 14px; }
+.v7-rating-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 8px 12px; }
+.v7-rating-row { display: flex; flex-direction: column; gap: 2px; }
+.v7-rating-label {
+  font-size: 10px; letter-spacing: .1em; color: var(--text-faint);
+  font-family: 'Space Mono', monospace;
+}
+.v7-rating-stars { font-size: 13px; color: var(--gold-bright); letter-spacing: 1px; }
+.teppei-stars { color: #f8d77a; }
+.danger-stars  { color: #e05050; }
+
+/* ── 人間OSレーダー ── */
+.v7-radar-section { border-top: 1px solid var(--line); padding-top: 14px; }
+.v7-radar-stars { display: flex; gap: 6px; margin: 8px 0 4px; }
+.v7-radar-star {
+  font-size: 26px; color: var(--text-faint); cursor: pointer;
+  transition: color .12s, transform .1s;
+}
+.v7-radar-star.active { color: var(--gold-bright); }
+.v7-radar-star:active { transform: scale(1.3); }
+.v7-radar-hint { font-size: 11px; color: var(--text-faint); letter-spacing: .05em; }
+
+/* ── 実戦5セクション ── */
+.v7-section { padding-left: 10px; border-left: 2px solid var(--line); }
+.signs-section          { border-left-color: #9e8c3c; }
+.signs-section          .detail-section-title { color: #9e8c3c; }
+.countermeasure-section { border-left-color: #c05050; }
+.countermeasure-section .detail-section-title { color: #c05050; }
+.utilization-section    { border-left-color: #5e9e7a; }
+.utilization-section    .detail-section-title { color: #5e9e7a; }
+.oneaction-section      { border-left-color: var(--gold-bright); }
+.oneaction-section      .detail-section-title { color: var(--gold-bright); }
+.oneaction-body         { color: var(--gold-bright); font-weight: 500; }
+.returnmove-section     { border-left-color: #c4607a; background: rgba(196,96,122,.05); border-radius: 0 6px 6px 0; }
+.returnmove-section     .detail-section-title { color: #c4607a; }
+.returnmove-body        { color: #e0889a; font-style: italic; font-size: 15px; }

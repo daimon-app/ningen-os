@@ -17,6 +17,7 @@ const LS_FAV    = 'jinkan_favorites';
 const LS_RECENT = 'jinkan_recent';
 const LS_LOG    = 'jinkan_log';
 const LS_TODAY  = 'jinkan_today_target';
+const LS_RADAR  = 'jinkan_radar';
 
 /* ---------------- safe localStorage ---------------- */
 function lsGet(key, fallback){
@@ -993,11 +994,54 @@ function renderDetail(id){
       <div class="detail-section-title">関連する本</div>
       <div class="detail-chip-row">${books.map(b=>`<div class="mech-chip" data-book="${b.id}">${escapeHtml(b.name)}</div>`).join('')}</div>
     </div>` : ''}
+
+    ${(function(){
+      var r=m.ratings||{};
+      if(!r.teppeiIndex&&!r.dangerLevel&&!r.investmentImportance) return '';
+      function star(n){return n>0?'★'.repeat(n)+'☆'.repeat(5-n):'—';}
+      return '<div class="detail-section v7-ratings">'
+        +'<div class="detail-section-title">◆ 評価・指数</div>'
+        +'<div class="v7-rating-grid">'
+        +'<div class="v7-rating-row"><span class="v7-rating-label">鉄兵指数</span><span class="v7-rating-stars teppei-stars">'+star(r.teppeiIndex)+'</span></div>'
+        +'<div class="v7-rating-row"><span class="v7-rating-label">危険度</span><span class="v7-rating-stars danger-stars">'+star(r.dangerLevel)+'</span></div>'
+        +'<div class="v7-rating-row"><span class="v7-rating-label">投資重要度</span><span class="v7-rating-stars">'+star(r.investmentImportance)+'</span></div>'
+        +'<div class="v7-rating-row"><span class="v7-rating-label">恋愛重要度</span><span class="v7-rating-stars">'+star(r.romanceImportance)+'</span></div>'
+        +'<div class="v7-rating-row"><span class="v7-rating-label">営業重要度</span><span class="v7-rating-stars">'+star(r.salesImportance)+'</span></div>'
+        +'<div class="v7-rating-row"><span class="v7-rating-label">仕事重要度</span><span class="v7-rating-stars">'+star(r.workImportance)+'</span></div>'
+        +'</div></div>';
+    }())}
+
+    ${(function(){
+      var radar=lsGet(LS_RADAR,{});
+      var cur=radar[m.id]||0;
+      var stars='';
+      for(var n=1;n<=5;n++){stars+='<span class="v7-radar-star'+(n<=cur?' active':'')+'" data-id="'+m.id+'" data-val="'+n+'">★</span>';}
+      return '<div class="detail-section v7-radar-section">'
+        +'<div class="detail-section-title">◆ 人間OSレーダー（自分への当てはまり）</div>'
+        +'<div class="v7-radar-stars" id="radar-'+escapeHtml(m.id)+'">'+stars+'</div>'
+        +'<div class="v7-radar-hint">タップで自己評価（'+(cur>0?'★'.repeat(cur)+'☆'.repeat(5-cur):'未評価')+'）</div>'
+        +'</div>';
+    }())}
+
+    ${m.signs?'<div class="detail-section v7-section signs-section"><div class="detail-section-title">◆ 見抜き方（発動サイン）</div><div class="detail-section-body">'+escapeHtml(m.signs)+'</div></div>':''} 
+    ${m.countermeasure?'<div class="detail-section v7-section countermeasure-section"><div class="detail-section-title">◆ 対策（暴走を防ぐ）</div><div class="detail-section-body">'+escapeHtml(m.countermeasure)+'</div></div>':''} 
+    ${m.utilization?'<div class="detail-section v7-section utilization-section"><div class="detail-section-title">◆ 活用（良い方向に使う）</div><div class="detail-section-body">'+escapeHtml(m.utilization)+'</div></div>':''} 
+    ${m.oneAction?'<div class="detail-section v7-section oneaction-section"><div class="detail-section-title">◆ 一手（今すぐできること）</div><div class="detail-section-body oneaction-body">'+escapeHtml(m.oneAction)+'</div></div>':''} 
+    ${m.returnMove?'<div class="detail-section v7-section returnmove-section"><div class="detail-section-title">◆ 戻る一手</div><div class="detail-section-body returnmove-body">'+escapeHtml(m.returnMove)+'</div></div>':''} 
   `;
 
   document.getElementById('detail-fav-btn').addEventListener('click', ()=>{
     toggleFavorite(m.id);
     renderDetail(id);
+  });
+  body.querySelectorAll('.v7-radar-star').forEach(function(star){
+    star.addEventListener('click', function(){
+      var sid=star.dataset.id, val=parseInt(star.dataset.val);
+      var radar=lsGet(LS_RADAR,{});
+      radar[sid]=(radar[sid]===val)?0:val;
+      lsSet(LS_RADAR,radar);
+      renderDetail(sid);
+    });
   });
   body.querySelectorAll('.mech-chip[data-id]').forEach(el=>{
     el.addEventListener('click', ()=>openDetail(el.dataset.id));
