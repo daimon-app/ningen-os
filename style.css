@@ -509,3 +509,23 @@ main{
 .returnmove-section     { border-left-color: #c4607a; background: rgba(196,96,122,.05); border-radius: 0 6px 6px 0; }
 .returnmove-section     .detail-section-title { color: #c4607a; }
 .returnmove-body        { color: #e0889a; font-style: italic; font-size: 15px; }
+
+/* ============================================================
+   現象図鑑（genshou）詳細レイアウト
+============================================================ */
+.genshou-sec { padding-left: 10px; border-left: 2px solid var(--line); }
+.genshou-where  { border-left-color: #7a9e8e; }
+.genshou-where  .detail-section-title { color: #7a9e8e; }
+.genshou-intent { border-left-color: #e0935a; }
+.genshou-intent .detail-section-title { color: #e0935a; }
+.genshou-intent .detail-section-body { color: var(--gold-bright); }
+.genshou-why    { border-left-color: #a895b0; }
+.genshou-why    .detail-section-title { color: #a895b0; }
+.genshou-spot   { border-left-color: #9e8c3c; }
+.genshou-spot   .detail-section-title { color: #9e8c3c; }
+.genshou-return { border-left-color: #c4607a; background: rgba(196,96,122,.05); border-radius: 0 6px 6px 0; }
+.genshou-return .detail-section-title { color: #c4607a; }
+.genshou-return .detail-section-body { color: #e0889a; font-style: italic; font-size: 15px; }
+.genshou-mech { border-left-color: #d4915c; }
+.genshou-mech .detail-section-title { color: #d4915c; }
+.genshou-ex { border-left-color: var(--line); }

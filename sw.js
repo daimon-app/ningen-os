@@ -7,7 +7,7 @@
      新しいファイルに切り替わる。
 ============================================================ */
 
-const CACHE_NAME = 'jinkan-os-jiten-v3';
+const CACHE_NAME = 'jinkan-os-jiten-v4';
 
 const PRECACHE_URLS = [
   './',
