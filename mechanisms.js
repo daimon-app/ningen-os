@@ -6842,7 +6842,8 @@ const MECHANISMS = [
   oneAction:'今日焦りを感じた瞬間に一度深呼吸してから動く',
   returnMove:'「焦りを感じた。一度止まる。次の一手は何か」',
 },
-/* ===== 現象図鑑 genshou：S級49 + A級118 = 167項目（Phase C+D） ===== */
+
+/* ============ 現象図鑑 167項目（S級49 + A級118） ============ */
 {
   id:'gp_yude_gaeru', category:'genshou', importance:'S',
   name:'茹でガエル現象', kana:'ゆでがえるげんしょう',
@@ -6865,7 +6866,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','社会','茹でガエル'],
   aliases:['少しずつの変化に気づかない','じわじわ値上げ','いつの間にか普通になっている','気づいたら手遅れ','慣れて麻痺する'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -6890,7 +6891,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','お金','スマホ'],
   aliases:['実質無料の罠','月々いくらのマジック','端末高すぎ慣れ','総額を見ていない','分割で麻痺'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -6915,7 +6916,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','買い物','道具'],
   aliases:['機能を使いこなせていない','宝の持ち腐れ','上位モデル買いがち','使わない機能にお金を払う','いざという時のためが無駄になる'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -6940,7 +6941,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','買い物','価格'],
   aliases:['上位モデルで価格を吊り上げる','松竹梅の松はおとり','使わない機能で値段が上がる','グレード商法','高機能を口実にした値上げ'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -6965,7 +6966,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','スマホ','お金'],
   aliases:['オプション外し忘れ','不要なオプション料','初月無料の罠','付けっぱなし課金','明細見てない'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -6990,7 +6991,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','お金','料金'],
   aliases:['1日たった◯円','コーヒー一杯分','日割りで安く見せる','総額を隠す','月々の魔法'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7015,7 +7016,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','お金','価格'],
   aliases:['980円マジック','大台割れ価格','端数で安く見せる','8の魔法','左の桁で判断'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7040,7 +7041,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','スマホ','お金'],
   aliases:['実質0円の罠','端末代が見えない','通信費に紛れる','一本化で麻痺','残債に気づかない'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7065,7 +7066,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','お金','決済'],
   aliases:['キャッシュレスで使いすぎ','カードだと痛くない','お金が減る感覚がない','後払いの罠','決済が軽い'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7090,7 +7091,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','お金','ポイント'],
   aliases:['実質◯円の罠','ポイントのために買う','還元でお得錯覚','ポイント失効が怖い','得した気になる'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7115,7 +7116,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','買い物','選択'],
   aliases:['真ん中を選びがち','松竹梅の竹','無難な中間','極端を避ける','ちょうどいいの罠'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7140,7 +7141,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','サブスク','お金'],
   aliases:['無料トライアルの罠','解約忘れ課金','自動更新','気づいたら課金','お試しのはずが'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7164,8 +7165,8 @@ const MECHANISMS = [
   relatedMechanisms:['friction_cost','status_quo_bias','decision_fatigue','loss_aversion'],
   books:[],
   tags:['現象図鑑','サブスク','解約'],
-  aliases:['解約できない','解約させない設計','手続きが面倒','引き留めの罠','解約電話のみ','辞めにくい'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  aliases:['解約させない設計','手続きが面倒','引き留めの罠','解約電話のみ','辞めにくい','解約できない','解約の仕方が分からない','やめ方が分からない'],
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7190,7 +7191,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','サブスク','お金'],
   aliases:['使ってないのに払ってる','幽霊サブスク','解約忘れ','いつか使うかも','放置課金'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7215,7 +7216,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','買い物','希少性'],
   aliases:['残りわずかの罠','在庫が少ない演出','今買わないと','売り切れ煽り','焦らせる表示'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7240,7 +7241,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','買い物','口コミ'],
   aliases:['星の数で判断','レビュー信仰','口コミ鵜呑み','サクラに騙される','評価数で安心'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7265,7 +7266,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','投資','損失回避'],
   aliases:['損切りできない','含み損放置','いつか戻る','塩漬け','もったいなくて売れない'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7290,7 +7291,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','投資','ナンピン'],
   aliases:['下がったら買い増し','平均単価を下げたい','ナンピンで傷拡大','取り戻そうとする','深追い'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7315,7 +7316,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','投資','FOMO'],
   aliases:['高値で買う','乗り遅れる恐怖','天井掴み','FOMO買い','飛びつき'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7340,7 +7341,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','投資','反射'],
   aliases:['パニック売り','反射で投げる','急落で投げ売り','恐怖で手放す','底で売る'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7365,7 +7366,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','投資','損切り'],
   aliases:['損を認められない','いつか戻る','損切りできない','撤退できない','間違いを認めたくない'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7389,8 +7390,8 @@ const MECHANISMS = [
   relatedMechanisms:['attachment_activation','anxious_attachment','variable_reward','dopamine_loop'],
   books:[],
   tags:['現象図鑑','SNS','愛着'],
-  aliases:['返信待ちが辛い','既読無視が気になる','LINE見すぎ','返事こないと不安','通知が気になる'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  aliases:['返信待ちが辛い','既読無視が気になる','LINE見すぎ','返事こないと不安','通知が気になる','LINE返ってこない','ライン返ってこない','返信が来ない','返事が来ない'],
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7415,7 +7416,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','SNS','比較'],
   aliases:['SNSで落ち込む','他人と比べて辛い','キラキラ投稿','比較疲れ','みんな幸せそう'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7440,7 +7441,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','SNS','承認'],
   aliases:['いいねが気になる','反応で気分が変わる','承認欲求','数字に振り回される','通知中毒'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7465,7 +7466,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','SNS','時間'],
   aliases:['気づくと時間が溶ける','スクロールが止まらない','終わりがない','ダラダラ見続ける','やめどきがない'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7490,7 +7491,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','恋愛','不安'],
   aliases:['最悪を想像する','既読不安','悪い方に考える','返事こないと不安','想像が膨らむ'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7515,7 +7516,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','地域','地元'],
   aliases:['地元びいき','出身地を良く言う','内集団びいき','地元最高','身内贔屓'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7540,7 +7541,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','地域','集団'],
   aliases:['祭りになると人が変わる','集団になると人格が変わる','その場の空気に飲まれる','みんなでやると箍が外れる','ライブで人格変わる'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7565,7 +7566,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','地域','評価'],
   aliases:['住所で印象が変わる','高級住宅街効果','地名のオーラ','立地ハロー','場所で判断'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7590,7 +7591,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','地域','ブランド'],
   aliases:['都市ブランド','場所で格上げ','地名で評価が上がる','産地効果','ブランド転移'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7615,7 +7616,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','習慣','お金'],
   aliases:['幽霊会員','通わないのに払う','いつか行く','退会できない','会費だけ払ってる'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7640,7 +7641,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','習慣','先延ばし'],
   aliases:['明日からやる','先延ばし','いつか始める','今日はまだ','後回し'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7665,7 +7666,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','習慣','恒常性'],
   aliases:['続かない','三日坊主','元に戻る','習慣化できない','意志が弱い'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7690,7 +7691,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','習慣','やる気'],
   aliases:['やる気が出ない','気分が乗らない','やる気待ち','始められない','モチベ待ち'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7715,7 +7716,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','社会','同調'],
   aliases:['空気を読む','本音が言えない','同調圧力','場を壊せない','言いたいことを飲み込む'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7740,7 +7741,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','仕事','集中'],
   aliases:['仕事前にスマホ見ない','情報を断つと集中できる','朝イチ通知を見ない','無音で仕事に入る','外部ノイズを切る'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7765,7 +7766,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','仕事','ブラック'],
   aliases:['ブラックが普通になる','異常に慣れる','おかしいと思わなくなる','我慢が当たり前になる','麻痺して気づかない'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7790,7 +7791,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','仕事','勝負'],
   aliases:['頑張りと消耗の違い','勝負所と無理の区別','努力と自己犠牲は違う','一時的な負荷か終わりなき消耗か','戦略的な踏ん張りか搾取か'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7815,7 +7816,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','道具','錯覚'],
   aliases:['高い道具を買えばできると思う','道具に使われている','宝の持ち腐れ','スペックより使いこなし','高い物を持てば上手くなる気がする'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7840,7 +7841,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','スマホ','道具'],
   aliases:['ハイエンドスマホ必要だと思う','用途はLINEなのに最高機種','最新じゃなきゃ不安','オーバースペック','20万円スマホ'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7865,7 +7866,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','道具','使いこなし'],
   aliases:['安い道具でも成果が出る','使い込めば十分','目的が明確なら道具は安くていい','工夫で補う','使い切る'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7890,7 +7891,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','道具','スペック'],
   aliases:['スペックで選ぶ','数値信仰','画素数競争','カタログスペック','数字が高い＝良い'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7915,7 +7916,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','道具','ステータス'],
   aliases:['見栄で買う','持っている自分','ステータス消費','見せるための道具','持つこと自体が目的'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7940,7 +7941,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','道具','未使用'],
   aliases:['宝の持ち腐れ','使いこなせていない','機能を活かせない','持っているだけ','買って満足'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7965,7 +7966,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','道具','職人'],
   aliases:['高い工具で腕が上がる気がする','工具が良ければ仕事も良い','プロ仕様信仰','道具で腕を見せる','工具と腕の混同'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -7990,7 +7991,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','道具','職人'],
   aliases:['昔は必要だった道具','環境が変わったのに気づかない','過去基準で選ぶ','時代遅れの装備信仰','昔の現場の感覚'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8015,7 +8016,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','道具','同調'],
   aliases:['周りが持ってるから欲しい','持ってないと恥ずかしい','道具で見栄','同調で道具を買う','周囲に合わせる'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8040,7 +8041,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','道具','職人'],
   aliases:['職人っぽく見せる道具','舐められないための工具','格を示す道具','見せるための工具','職人感を満たす'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8065,7 +8066,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','道具','スペック'],
   aliases:['オーバースペック','使う場面がない','高性能を使わない','未来のために買う','持ってるだけ','宝の持ち腐れ','いつか使うかもの罠'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8090,7 +8091,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','営業','権威'],
   aliases:['白衣効果','肩書き信用','専門家が言うから','制服を信じる','権威に弱い'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8115,7 +8116,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','営業','権威'],
   aliases:['テレビで話題','有名人愛用','権威を借りる','大手も導入','名前を借りる'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8140,7 +8141,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','営業','限定'],
   aliases:['あなただけ','会員限定','特別ご招待','選ばれた感','限定の罠'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8165,7 +8166,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','営業','返報性'],
   aliases:['試食したら買わなきゃ','無料の見返り','お返ししなきゃ','負い目で買う','フリーの罠'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8190,7 +8191,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','営業','一貫性'],
   aliases:['まず登録だけ','小さなYES','段階的に契約','一貫性の罠','囲い込み'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8215,7 +8216,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','営業','比較'],
   aliases:['高いの見せてから','比較で安く見せる','順番で印象操作','アンカー演出','おとり比較'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8240,7 +8241,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','営業','情報商材'],
   aliases:['月収◯万','誰でも簡単に','夢を見せる','成功例だけ','情報商材の罠'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8265,7 +8266,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','買い物','価格'],
   aliases:['高いほど効く','値段で品質判断','高級だから良い','プラセボ','価格信仰'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8290,7 +8291,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','お金','デフォルト'],
   aliases:['初期設定のまま','デフォルト','チェック外し忘れ','標準だと思う','設定スルー'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8315,7 +8316,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','SNS','拡散'],
   aliases:['炎上','怒りが拡散する','感情的な投稿が広がる','対立が燃える','燃え広がる'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8340,7 +8341,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','SNS','共感'],
   aliases:['わかる連鎖','共感で広がる','みんなそう思ってる','気持ちが一致','共感ボタン'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8365,7 +8366,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','SNS','同調'],
   aliases:['トップコメントに流される','コメント欄の空気','周りの意見に同調','空気誘導','コメント同調'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8390,7 +8391,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','SNS','固定化'],
   aliases:['一度嫌うと全部嫌い','アンチ化','否定が固定する','嫌いになると戻れない','全部悪く見える'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8415,7 +8416,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','SNS','依存'],
   aliases:['バズりたい','反応中毒','次もバズらせたい','話題性に縛られる','バズの快感'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8440,7 +8441,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','SNS','集中'],
   aliases:['ショート動画中毒','長いの見れない','集中力が落ちる','刺激に慣れる','飛ばし見'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8465,7 +8466,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','AI活用','情報'],
   aliases:['情報集めすぎ','インプット過多','知っただけ','実践しない','集めて満足'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8490,7 +8491,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','AI活用','学習'],
   aliases:['わかった気','知った気になる','理解した気','できる気がする','解説満足'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8515,7 +8516,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','SNS','偏り'],
   aliases:['同じ意見ばかり','エコーチェンバー','反対意見が見えない','視野が狭まる','偏り'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8540,7 +8541,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','投資','利益'],
   aliases:['含み益','まだ売ってない','利益が出てる気分','気が大きくなる','幻の利益'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8565,7 +8566,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','投資','FOMO'],
   aliases:['天井で買う','飛び乗り','最高潮で参加','乗り遅れ恐怖','ピークで掴む'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8590,7 +8591,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','投資','損失回避'],
   aliases:['利確が早い','すぐ売る','伸びる前に手放す','チキン利確','怖くて売る'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8615,7 +8616,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','投資','錯覚'],
   aliases:['儲け自慢','爆益報告','簡単に勝てる','SNS投資','成功談に焦る'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8640,7 +8641,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','投資','後知恵'],
   aliases:['後知恵','やっぱりね','予想できた気がする','分かってた','結果論'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8665,7 +8666,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','投資','サンクコスト'],
   aliases:['ここまでやったから','もったいない','元を取りたい','損切りできない','過去のコスト'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8690,7 +8691,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','投資','記憶'],
   aliases:['当たった時だけ覚える','よく当たる気がする','外れは忘れる','幻の自信','的中錯覚'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8715,7 +8716,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','恋愛','力学'],
   aliases:['追うと逃げる','追いかけると引く','重いと思われる','距離を取られる','押すと引く'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8740,7 +8741,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','恋愛','希少性'],
   aliases:['手に入ると冷める','蛙化','釣った魚','追ってる時が楽しい','ゲット後の喪失'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8765,7 +8766,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','恋愛','希少性'],
   aliases:['手が届かない人','モテる人に弱い','希少性','高嶺の花','入手困難'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8790,7 +8791,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','恋愛','解釈'],
   aliases:['脈ありだと思う','都合よく解釈','願望で読む','照れてるだけ','勝手な解釈'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8815,7 +8816,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','恋愛','美化'],
   aliases:['昔は良かった','元カノ美化','過去美化','良い思い出だけ','復縁したくなる'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8840,7 +8841,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','恋愛','極端'],
   aliases:['最高か最低か','白黒思考','理想化と幻滅','極端評価','中間がない'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8865,7 +8866,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','習慣','完璧主義'],
   aliases:['完璧主義','ちゃんとやらなきゃ','0か100か','不完全が怖い','やるなら完璧'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8890,7 +8891,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','習慣','継続'],
   aliases:['一日サボると崩れる','連鎖でやめる','もういいや','途切れた','全部やめる'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8915,7 +8916,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','習慣','準備'],
   aliases:['記録満足','ノート作り','計画倒れ','準備で満足','まとめて満足'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8940,7 +8941,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','習慣','満足'],
   aliases:['やった気','頑張った気','少しで満足','達成感だけ','進んだ気'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8965,7 +8966,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','現場','時間'],
   aliases:['探し物が多い','道具探し','定位置がない','時間泥棒','毎回探す'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -8990,7 +8991,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','現場','片付け'],
   aliases:['片付け後回し','溜めて手がつかない','雪だるま','まとめてやろう','散らかり蓄積'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9015,7 +9016,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','現場','焦り'],
   aliases:['急いで失敗','段取り崩壊','焦って手戻り','急がば回れ','飛ばして遅れる'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9040,7 +9041,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','現場','確認'],
   aliases:['材料不足','確認漏れ','連鎖で止まる','段取り崩れ','準備不足'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9065,7 +9066,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','現場','確認'],
   aliases:['やったつもり','確認してない','終わってない','思い込み','記憶頼り'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9090,7 +9091,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','現場','慣れ'],
   aliases:['慣れて雑になる','いつも通り','基本飛ばし','ベテラン油断','慣れミス'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9115,7 +9116,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','AI活用','依存'],
   aliases:['AI丸投げ','考えなくなる','鵜呑み','AIに任せきり','思考停止'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9140,7 +9141,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','AI活用','最適化'],
   aliases:['プロンプト迷子','指示を練り直す','最適化沼','手段が目的','調整ばかり'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9165,7 +9166,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','AI活用','習熟'],
   aliases:['AI渡り歩き','ツール乗り換え','新しいもの好き','使い込まない','目移り'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9190,7 +9191,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','AI','実践'],
   aliases:['勉強だけ','実装しない','インプット過多','手を動かさない','学んで満足'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9215,7 +9216,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','AI活用','学習'],
   aliases:['学習中毒','勉強ばかり','まだ足りない','インプット逃避','実践しない'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9240,7 +9241,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','職場','多忙'],
   aliases:['忙しい自慢','多忙アピール','忙しい＝偉い','成果より忙しさ','やってる感'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9265,7 +9266,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','職場','即レス'],
   aliases:['即レス強迫','すぐ返さなきゃ','中断地獄','通知に追われる','返信圧'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9290,7 +9291,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','職場','会議'],
   aliases:['やってる感会議','集まるだけ','何も決まらない','惰性の会議','形だけ会議'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9315,7 +9316,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','職場','離脱'],
   aliases:['辞められない','言い出せない','迷惑かけたくない','情で残る','離脱できない'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9340,7 +9341,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','職場','前例'],
   aliases:['前例踏襲','今までこうだった','変えない','慣習','昔から'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9365,7 +9366,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','職場','責任'],
   aliases:['みんなの責任','誰もやらない','傍観者効果','責任分散','誰かがやる'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9390,7 +9391,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','職場','忖度'],
   aliases:['忖度','推測しあう','上の意向','確認しない','伝言ゲーム'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9415,7 +9416,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','職場','限界'],
   aliases:['頑張りすぎ正常化','無理が普通','限界に気づかない','これくらい普通','過労慣れ'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9440,7 +9441,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','人間関係','承認'],
   aliases:['いい人疲れ','断れない','NOが言えない','抱え込む','嫌われたくない'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9465,7 +9466,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','人間関係','返報'],
   aliases:['お返し義務','返さなきゃ','貸し借り','返報の連鎖','義理'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9490,7 +9491,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','人間関係','比較'],
   aliases:['比較地獄','人と比べる','満たされない','上ばかり見る','足りない'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9515,7 +9516,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','人間関係','期待'],
   aliases:['勝手な期待','察してほしい','言わずに怒る','期待裏切り','分かってくれない'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9540,7 +9541,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','人間関係','印象'],
   aliases:['第一印象','最初の印象で決める','印象固定','先入観','最初が肝心'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9565,7 +9566,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','人間関係','噂'],
   aliases:['噂で判断','評判を信じる','会う前に決めつけ','先入観','色眼鏡'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9590,7 +9591,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','健康','反動'],
   aliases:['ご褒美で台無し','頑張ったから','ドカ食い','反動','モラルライセンシング'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9615,7 +9616,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','健康','回避'],
   aliases:['体重計に乗らない','見たくない','現実逃避','確認を避ける','数字が怖い'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9640,7 +9641,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','健康','放棄'],
   aliases:['今日はもういいや','一度破ったら','全解禁','どうにでもなれ','台無し'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9665,7 +9666,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','健康','飛びつき'],
   aliases:['○○に効く','次々試す','健康法ジプシー','飛びつき','続かない'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9690,7 +9691,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','健康','反動'],
   aliases:['禁欲反動','我慢の爆発','リバウンド','完全禁止の罠','決壊'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9715,7 +9716,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','健康','安心'],
   aliases:['サプリ安心','飲んでるから大丈夫','対策した気','本質回避','安心で怠ける'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9740,7 +9741,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','健康','夜更かし'],
   aliases:['夜更かし','寝不足ループ','分かってるのに','後悔ループ','夜のスマホ'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9765,7 +9766,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','EC','広告'],
   aliases:['追跡広告','カゴ落ち','広告に追われる','根負け','リターゲティング'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9790,7 +9791,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','EC','焦り'],
   aliases:['タイムセール','カウントダウン','時間制限','焦り買い','今だけ'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9815,7 +9816,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','サブスク','積み重なり'],
   aliases:['サブスク積み重なり','塵も積もれば','合計すると高い','個別だと安い','固定費圧迫'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9840,7 +9841,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','課金','麻痺'],
   aliases:['課金麻痺','ガチャ','少額課金','金銭感覚麻痺','もう一回'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9865,7 +9866,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','スマホ','依存'],
   aliases:['惰性スマホ','無意識に開く','目的なく触る','スマホ依存','手癖'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9890,7 +9891,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','スマホ','通知'],
   aliases:['通知反応','音で反射','パブロフ','通知中毒','反射的に見る'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9915,7 +9916,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','SNS','誘導'],
   aliases:['最初のコメントで決まる','コメント欄の空気','論調が作られる','先頭意見に流される','空気を作る'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9940,7 +9941,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','営業','希少性'],
   aliases:['あと3日','カウントダウン','締切煽り','今だけ','時間制限'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9965,7 +9966,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','営業','物語'],
   aliases:['お客様の声','体験談','私も変われた','成功事例','口コミを信じる'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -9990,7 +9991,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','営業','返報'],
   aliases:['無料の罠','もらうと断れない','返報性','無料診断','タダより高い'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10015,7 +10016,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','営業','社会的証明'],
   aliases:['売れてます','ランキング1位','みんな使ってる','人気だから','流行ってる'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10040,7 +10041,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','お金','損失回避'],
   aliases:['食べ放題','元を取りたい','使い放題','損したくない','回数こなさなきゃ'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10065,7 +10066,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','お金','アンカリング'],
   aliases:['二重価格','定価から値引き','元値が高い','割引率','お得錯覚'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10090,7 +10091,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','投資','焦り'],
   aliases:['取り返したい','熱くなる','ムキになる','損を取り戻す','焦って勝負'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10115,7 +10116,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','投資','愛着'],
   aliases:['銘柄に惚れる','悪材料を見ない','贔屓の銘柄','客観視できない','選んだプライド'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10140,7 +10141,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','恋愛','解釈'],
   aliases:['脈ありかも','都合よく解釈','願望思考','勘違い','期待で読む'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10165,7 +10166,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','恋愛','記憶'],
   aliases:['昔は良かった','元カノ美化','過去を美化','あの頃','思い出補正'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10190,7 +10191,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','恋愛','解釈'],
   aliases:['好き避け','嫌い避け','態度が読めない','脈が分からない','振り回される'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10215,7 +10216,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','恋愛','駆け引き'],
   aliases:['駆け引き','素直になれない','主導権争い','本音を隠す','探り合い'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10240,7 +10241,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','習慣','形'],
   aliases:['形から入る','道具を揃えて満足','ウェアだけ','環境だけ整える','揃えて満足'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10265,7 +10266,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','習慣','目標'],
   aliases:['目標が高すぎる','いきなり大きく','挫折する','無理な計画','張り切りすぎ'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10290,7 +10291,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','健康','報酬'],
   aliases:['ご褒美','頑張ったから','チートデイ','埋め合わせ','帳消し'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10315,7 +10316,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','健康','例外'],
   aliases:['今日だけ','今回だけ','特別な日','一回くらい','例外のつもり'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10340,7 +10341,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','健康','反動'],
   aliases:['反動','我慢の限界','爆発','禁止すると欲しくなる','リバウンド'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10365,7 +10366,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','現場','段取り'],
   aliases:['道具を探す','どこだっけ','探し物','定位置がない','片付いてない'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10390,7 +10391,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','現場','片付け'],
   aliases:['後でまとめて','片付け後回し','溜める','散らかる','後でやる'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10415,7 +10416,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','現場','分担'],
   aliases:['自分でやった方が早い','抱え込み','任せられない','人が育たない','手が空かない'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10440,7 +10441,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','現場','経験'],
   aliases:['経験頼り','いつも通り','思い込み','確認しない','ベテランの油断'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10465,7 +10466,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','AI活用','実装'],
   aliases:['実装しない','準備で止まる','調べて満足','手が動かない','作らない'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10490,7 +10491,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','職場','評価'],
   aliases:['忙しいアピール','多忙自慢','忙しそう','有能に見える','アピール上手'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10515,7 +10516,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','職場','沈黙'],
   aliases:['会議で発言できない','沈黙の空気','様子見','誰も言わない','言い出せない'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10540,7 +10541,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','職場','残業'],
   aliases:['残業が偉い','長く働く','頑張ってる','帰りにくい','時間で評価'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10565,7 +10566,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','職場','前例'],
   aliases:['前例踏襲','今まで通り','変えられない','慣習','惰性'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10590,7 +10591,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','職場','責任'],
   aliases:['責任分散','誰かがやる','みんなの仕事','放置','傍観者'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10615,7 +10616,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','人間関係','比較'],
   aliases:['比較され不安','他人と比べる','評価が気になる','自分を見失う','相対評価'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10640,7 +10641,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','人間関係','期待'],
   aliases:['過剰期待','勝手に期待','裏切られた','がっかり','期待しすぎ'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10665,7 +10666,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','人間関係','責任'],
   aliases:['被害者意識','自分は悪くない','相手のせい','変えられない','立場に固執'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10690,7 +10691,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','人間関係','地位'],
   aliases:['マウント','張り合い','優位に立つ','上下を競う','取り合い'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10715,7 +10716,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','EC','割引'],
   aliases:['カゴ落ち','追っかけクーポン','割引が来る','迷うと割引','放棄したら安く'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10740,7 +10741,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','EC','消費'],
   aliases:['ついで買い','せっかくだから','一緒に買う','あと少しで送料無料','レコメンド'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10765,7 +10766,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','EC','保存'],
   aliases:['お気に入り塩漬け','欲しい物リスト','保存して満足','ウィッシュリスト','キープ'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10790,7 +10791,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','サブスク','合計'],
   aliases:['サブスク積み上げ','合計すると高い','一つ一つは安い','固定費','塵も積もれば'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10815,7 +10816,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','スマホ','依存'],
   aliases:['無意識にスマホ','手が伸びる','用もないのに','癖で開く','スマホ依存'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10840,7 +10841,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','スマホ','睡眠'],
   aliases:['寝る前スマホ','夜更かし','やめられない','睡眠削る','翌日後悔'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10865,7 +10866,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','スマホ','集中'],
   aliases:['通知で集中切れる','再集中できない','気が散る','中断コスト','通知オフ'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10890,7 +10891,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','情報商材','誘惑'],
   aliases:['簡単に稼げる','誰でもできる','不労所得','楽して儲かる','うますぎる話'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10915,7 +10916,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','情報商材','希少性'],
   aliases:['高額だから価値がある','限定','選ばれた人だけ','高いほど良い','特別感'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10940,7 +10941,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','情報商材','依存'],
   aliases:['コミュニティ依存','会費を払ったから','抜けられない','サロン','所属感'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10965,7 +10966,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','地域','同調'],
   aliases:['地域同調','合わせないと浮く','町内会','慣習','噂される'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -10990,7 +10991,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','地域','常識'],
   aliases:['狭い世界','井の中の蛙','うちの業界では','閉じた常識','世間知らず'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 {
@@ -11015,7 +11016,7 @@ const MECHANISMS = [
   books:[],
   tags:['現象図鑑','地域','しがらみ'],
   aliases:['地縁','しがらみ','角が立つ','断れない','付き合い'],
-  ratings:{humanOS:0,teppeiIndex:0,danger:0,investment:0,romance:0,sales:0,work:0},
+  ratings:{teppeiIndex:0,dangerLevel:0,investmentImportance:0,romanceImportance:0,salesImportance:0,workImportance:0},
   signs:'', countermeasure:'', utilization:'', oneAction:'',
 },
 

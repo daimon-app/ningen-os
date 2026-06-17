@@ -361,22 +361,23 @@ function scoreMechanism(m, query){
   score += usedExact + usedMax * 6;
 
 
+  // 現象図鑑の専用フィールド: intent/usedWhere は検索価値が高いので部分一致ボーナス
+  if(m.category === 'genshou'){
+    if(m.intent && normalizeText(m.intent).includes(q)) score += 4;
+    if(m.usedWhere && normalizeText(m.usedWhere).includes(q)) score += 4;
+    if(m.howToSpot && normalizeText(m.howToSpot).includes(q)) score += 3;
+  }
+
   const broad = [
     m.shortDescription, m.fullDescription, m.everydayExample,
     m.workExample, m.investmentExample, m.romanceExample,
     m.teppeiExample, m.daimonUse,
-    // 現象図鑑（genshou）専用フィールドも検索対象に含める
+    // 現象図鑑の専用フィールドも全文検索対象に含める
     m.usedWhere, m.intent, m.whyWorks, m.howToSpot, m.returnMove,
   ].filter(Boolean);
   let broadMax = 0;
   broad.forEach(f=>{ broadMax = Math.max(broadMax, bigramOverlap(q, f)); });
   score += broadMax * 2;
-
-  // 現象図鑑の intent / usedWhere は「何をさせられているか/どこで使われるか」で
-  // 検索ヒットの価値が高いため、部分一致時に追加ボーナス
-  [m.intent, m.usedWhere].forEach(f=>{
-    if(f && normalizeText(f).includes(q)) score += 4;
-  });
 
   const relNames = [
     ...getBooksForMechanism(m.id).map(b=>b.name),
@@ -935,72 +936,65 @@ function renderDetail(id){
   const related = filterExisting(m.relatedMechanisms).map(findMechanism);
   const books = getBooksForMechanism(m.id);
 
-  // ===== 現象図鑑（genshou）専用レイアウト =====
+  // ===== 現象図鑑 専用詳細レイアウト =====
   if(m.category === 'genshou'){
     const sec = (title, text, cls) => text ? `
-      <div class="detail-section genshou-sec ${cls||''}">
-        <div class="detail-section-title">${title}</div>
-        <div class="detail-section-body">${escapeHtml(text)}</div>
-      </div>` : '';
+    <div class="detail-section genshou-sec ${cls||''}">
+      <div class="detail-section-title">${title}</div>
+      <div class="detail-section-body">${escapeHtml(text)}</div>
+    </div>` : '';
     body.innerHTML = `
-      <div class="detail-badges">
-        <span class="imp-badge" style="background:${imp.color}">${escapeHtml(imp.label)}</span>
-        <span class="cat-dot" style="background:${cat.color}"></span>
-        <span class="cat-label">${escapeHtml(cat.label)}</span>
-      </div>
-      <div class="detail-kana">${escapeHtml(m.kana||'')}</div>
-      <div class="detail-name">${escapeHtml(m.name)}</div>
-      <div class="detail-oneline">${escapeHtml(m.oneLine)}</div>
-      <div class="detail-fav ${isFav?'active':''}" id="detail-fav-btn">
-        <span>${isFav?'★':'☆'}</span><span>お気に入り</span>
-      </div>
+    <div class="detail-badges">
+      <span class="imp-badge" style="background:${imp.color}">${escapeHtml(imp.label)}</span>
+      <span class="cat-dot" style="background:${cat.color}"></span>
+      <span class="cat-label">${escapeHtml(cat.label)}</span>
+    </div>
+    <div class="detail-kana">${escapeHtml(m.kana||'')}</div>
+    <div class="detail-name">${escapeHtml(m.name)}</div>
+    <div class="detail-oneline">${escapeHtml(m.oneLine)}</div>
+    <div class="detail-fav ${isFav?'active':''}" id="detail-fav-btn">
+      <span>${isFav?'★':'☆'}</span><span>お気に入り</span>
+    </div>
 
-      ${sec('何が起きているか', m.shortDescription, 'genshou-what')}
-      ${sec('どこで使われているか', m.usedWhere, 'genshou-where')}
-      ${sec('何をさせようとしているか', m.intent, 'genshou-intent')}
-      ${related.length ? `
-      <div class="detail-section genshou-sec genshou-mech">
-        <div class="detail-section-title">使われている心理メカニズム</div>
-        <div class="detail-chip-row">${related.map(r=>`<div class="mech-chip" data-id="${r.id}">${escapeHtml(r.name)}</div>`).join('')}</div>
-      </div>` : ''}
-      ${sec('なぜ効くのか', m.whyWorks, 'genshou-why')}
-      ${sec('見抜き方', m.howToSpot, 'genshou-spot')}
-      ${sec('戻る一手', m.returnMove, 'genshou-return')}
-      ${sec('日常例', m.everydayExample, 'genshou-ex')}
-      ${sec('仕事での例', m.workExample, 'genshou-ex')}
-      ${sec('投資での例', m.investmentExample, 'genshou-ex')}
-      ${sec('恋愛での例', m.romanceExample, 'genshou-ex')}
+    ${sec('何が起きているか', m.shortDescription, 'g-what')}
+    ${sec('どこで使われているか', m.usedWhere, 'g-where')}
+    ${sec('何をさせようとしているか', m.intent, 'g-intent')}
+    ${related.length ? `
+    <div class="detail-section genshou-sec g-mech">
+      <div class="detail-section-title">使われている心理メカニズム</div>
+      <div class="detail-chip-row">${related.map(r=>`<div class="mech-chip" data-id="${r.id}">${escapeHtml(r.name)}</div>`).join('')}</div>
+    </div>` : ''}
+    ${sec('なぜ効くのか', m.whyWorks, 'g-why')}
+    ${sec('見抜き方', m.howToSpot, 'g-spot')}
+    ${sec('戻る一手', m.returnMove, 'g-return')}
+    ${sec('日常例', m.everydayExample, 'g-ex')}
+    ${sec('仕事での例', m.workExample, 'g-ex')}
+    ${sec('投資での例', m.investmentExample, 'g-ex')}
+    ${sec('恋愛での例', m.romanceExample, 'g-ex')}
 
-      ${(m.aliases&&m.aliases.length) ? `
-      <div class="detail-section">
-        <div class="detail-section-title">こんな言葉でも</div>
-        <div class="detail-tags">${m.aliases.map(a=>`<span class="detail-tag">${escapeHtml(a)}</span>`).join('')}</div>
-      </div>` : ''}
-      ${(m.tags&&m.tags.length) ? `
-      <div class="detail-section">
-        <div class="detail-section-title">タグ</div>
-        <div class="detail-tags">${m.tags.map(t=>`<span class="detail-tag">${escapeHtml(t)}</span>`).join('')}</div>
-      </div>` : ''}
+    ${(m.aliases&&m.aliases.length) ? `
+    <div class="detail-section">
+      <div class="detail-section-title">こんな言葉でも引ける</div>
+      <div class="detail-tags">${m.aliases.map(a=>`<span class="detail-tag used-tag">${escapeHtml(a)}</span>`).join('')}</div>
+    </div>` : ''}
+    ${(m.tags||[]).length ? `
+    <div class="detail-section">
+      <div class="detail-section-title">タグ</div>
+      <div class="detail-tags">${(m.tags||[]).map(t=>`<span class="detail-tag">${escapeHtml(t)}</span>`).join('')}</div>
+    </div>` : ''}
     `;
+    // fav button handler
     document.getElementById('detail-fav-btn').addEventListener('click', ()=>{
-      toggleFavorite(m.id); renderDetail(m.id);
+      toggleFavorite(m.id); renderDetail(id);
     });
+    // related chip handlers
     body.querySelectorAll('.mech-chip[data-id]').forEach(el=>{
       el.addEventListener('click', ()=>openDetail(el.dataset.id));
-    });
-    body.querySelectorAll('.mech-chip[data-book]').forEach(el=>{
-      el.addEventListener('click', ()=>{
-        const bookId = el.dataset.book;
-        closeDetail();
-        state.map.bookId = bookId;
-        switchView('map');
-        switchSubtab('map','books');
-      });
     });
     body.scrollTop = 0;
     return;
   }
-
+  // ===== 通常メカニズム詳細レイアウト =====
   body.innerHTML = `
     <div class="detail-badges">
       <span class="imp-badge" style="background:${imp.color}">${escapeHtml(imp.label)}</span>
